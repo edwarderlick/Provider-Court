@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT // DELIVERY &amp; VERDICT</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#9ad2b9",
+                        "on-primary-fixed-variant": "#842500",
+                        "primary": "#a93100",
+                        "surface-container-highest": "#fbdcd3",
+                        "primary-container": "#d34000",
+                        "surface": "#fff8f6",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#fff1ed",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#ffb59e",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004884",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-primary-container": "#fffbff",
+                        "tertiary-fixed-dim": "#a4c9ff",
+                        "surface-tint": "#ad3300",
+                        "primary-fixed-dim": "#ffb59e",
+                        "on-surface": "#281712",
+                        "surface-variant": "#fbdcd3",
+                        "secondary-fixed": "#b6efd5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#5c4037",
+                        "background": "#fff8f6",
+                        "on-secondary-container": "#376c58",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#002116",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#ffdbd0",
+                        "on-background": "#281712",
+                        "secondary": "#326854",
+                        "secondary-container": "#b3ecd2",
+                        "on-tertiary-fixed": "#001c39",
+                        "surface-dim": "#f2d3ca",
+                        "inverse-surface": "#3f2c26",
+                        "tertiary": "#005da8",
+                        "on-secondary-fixed-variant": "#17503d",
+                        "surface-container-high": "#ffe2da",
+                        "inverse-on-surface": "#ffede8",
+                        "on-primary-fixed": "#3a0b00",
+                        "tertiary-container": "#0076d3",
+                        "outline-variant": "#e6beb2",
+                        "surface-container": "#ffe9e3",
+                        "surface-bright": "#fff8f6",
+                        "outline": "#916f65",
+                        "tertiary-fixed": "#d4e3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "technical-gap": "8px",
+                        "margin-desktop": "40px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "mono-label": ["JetBrains Mono"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "mono-data": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "mono-label": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .brutalist-border { border: 1px solid #916f65; }
+        .active-led { box-shadow: 0 0 8px #326854; }
+        .warning-led { box-shadow: 0 0 8px #a93100; }
+        body { background-color: #fff8f6; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface border-b border-outline">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">gavel</span>
+<span class="font-headline-md text-headline-md-mobile tracking-tighter text-primary">PROVIDER COURT</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary active-led"></div>
+<span class="font-mono-data text-mono-data text-on-surface-variant uppercase tracking-widest">Live_Net</span>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-32 px-margin-mobile flex flex-col gap-6">
+<!-- Header Section -->
+<header class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-mono-label text-mono-label text-primary">[04]</span>
+<h1 class="font-headline-md text-headline-md-mobile uppercase">VERDICT_MANIFEST</h1>
+</div>
+<p class="font-mono-data text-mono-data text-on-surface-variant">DELIVERY_ID: PC-8829-QX-01 // STATUS: EVALUATING</p>
+</header>
+<!-- Artifact Preview Module -->
+<section class="brutalist-border bg-surface-container-lowest overflow-hidden">
+<div class="bg-surface-container-low px-4 py-2 border-b border-outline flex justify-between items-center">
+<span class="font-mono-label text-mono-label uppercase">[DELIVERED_ARTIFACT]</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">V1.0.4_FINAL</span>
+</div>
+<div class="p-0">
+<div class="aspect-video bg-cover bg-center" data-alt="A high-contrast architectural photography shot of a brutalist concrete structure with sharp geometric shadows and orange industrial light accents. The image represents technical precision and hardware-inspired aesthetics, emphasizing clean lines, heavy textures, and a professional, secure atmosphere typical of a high-end technical escrow interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDekE8ORaHCaUfgxtIlixcCvS5hyVncvA3RWVFUzJ-S0PVjM6ojTBw2ezzmL5lS-ydcmgspIcaMmDxNFRb_CVCJBzr6g7i94vgYLJioTZHs_trjK7VlxE51mzHV59xtTTrtjuxfuNBPUn6jz_ByxBZ_CBDdJKvSudfGc8HtEAxmuWRuUOLMLWXlMwUqqO9zgspKcpf3V4F8ftosp69L9I-7nkGLvNuZ9Ienons8cl5Hecy7JdO84-dXMJBA01w-XWUn5WsnTBt763Tb')"></div>
+</div>
+<div class="p-4 border-t border-outline bg-surface-container-lowest">
+<div class="flex justify-between items-center mb-2">
+<span class="font-mono-label text-mono-label text-primary">HASH_SHA256:</span>
+<span class="font-mono-data text-mono-data text-on-surface truncate ml-4">f3e8a1...d492</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-mono-label text-mono-label text-primary">FILE_SIZE:</span>
+<span class="font-mono-data text-mono-data text-on-surface">142.8 MB</span>
+</div>
+</div>
+</section>
+<!-- Verdict Clause List -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="font-mono-label text-mono-label text-primary">[CLAUSE_BY_CLAUSE_AUDIT]</span>
+<div class="flex-1 h-px bg-outline-variant"></div>
+</div>
+<!-- Clause 01: Pass -->
+<div class="brutalist-border bg-surface flex flex-col">
+<div class="flex justify-between items-start p-4 border-b border-outline-variant">
+<div class="flex flex-col">
+<span class="font-mono-label text-mono-label text-on-surface-variant">[01] API_COMPLIANCE</span>
+<h3 class="font-body-lg font-bold uppercase mt-1">REST Endpoint Standards</h3>
+</div>
+<div class="flex items-center gap-2 bg-secondary-container px-3 py-1 brutalist-border">
+<span class="material-symbols-outlined text-on-secondary-container text-sm">check_circle</span>
+<span class="font-mono-label text-mono-label text-on-secondary-container">PASS</span>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low">
+<p class="font-mono-data text-mono-data text-on-surface-variant mb-2">EVIDENCE_LOG:</p>
+<div class="font-mono-data text-mono-data bg-surface p-2 border border-outline-variant">
+                        &gt; All 14 endpoints responding with 200 OK.<br/>
+                        &gt; Schema validation successful for payloads.
+                    </div>
+</div>
+</div>
+<!-- Clause 02: Pass -->
+<div class="brutalist-border bg-surface flex flex-col">
+<div class="flex justify-between items-start p-4 border-b border-outline-variant">
+<div class="flex flex-col">
+<span class="font-mono-label text-mono-label text-on-surface-variant">[02] PERFORMANCE_KPI</span>
+<h3 class="font-body-lg font-bold uppercase mt-1">Latency Threshold &lt; 200ms</h3>
+</div>
+<div class="flex items-center gap-2 bg-secondary-container px-3 py-1 brutalist-border">
+<span class="material-symbols-outlined text-on-secondary-container text-sm">check_circle</span>
+<span class="font-mono-label text-mono-label text-on-secondary-container">PASS</span>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low">
+<p class="font-mono-data text-mono-data text-on-surface-variant mb-2">EVIDENCE_LOG:</p>
+<div class="font-mono-data text-mono-data bg-surface p-2 border border-outline-variant">
+                        &gt; P99 Latency recorded at 142ms.<br/>
+                        &gt; Stress test 10k CCU maintained stability.
+                    </div>
+</div>
+</div>
+<!-- Clause 03: Fail / Warning -->
+<div class="brutalist-border bg-surface flex flex-col">
+<div class="flex justify-between items-start p-4 border-b border-outline-variant">
+<div class="flex flex-col">
+<span class="font-mono-label text-mono-label text-on-surface-variant">[03] DOCUMENTATION</span>
+<h3 class="font-body-lg font-bold uppercase mt-1">Inline Code Comments</h3>
+</div>
+<div class="flex items-center gap-2 bg-primary-container px-3 py-1 brutalist-border">
+<span class="material-symbols-outlined text-on-primary-container text-sm">error</span>
+<span class="font-mono-label text-mono-label text-on-primary-container uppercase">MINOR_FAIL</span>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low">
+<p class="font-mono-data text-mono-data text-on-surface-variant mb-2">EVIDENCE_LOG:</p>
+<div class="font-mono-data text-mono-data bg-surface p-2 border border-outline-variant text-primary">
+                        &gt; Critical failure in modules: [AUTH_CONTROLLER.TS]<br/>
+                        &gt; Missing TSDoc blocks for public methods.
+                    </div>
+</div>
+</div>
+</section>
+<!-- Final Action Area -->
+<section class="flex flex-col gap-4 mt-4">
+<div class="brutalist-border p-4 bg-surface-container-high border-2 border-primary">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">warning</span>
+<h4 class="font-mono-label text-mono-label text-primary uppercase">ARBITRATION_REQUIRED</h4>
+</div>
+<p class="font-body-md text-on-surface text-sm">Due to [MINOR_FAIL] in Clause [03], full release is pending provider remediation or manual override by [OPERATOR_082].</p>
+</div>
+</section>
+</main>
+<!-- Release Progress & Bottom Nav -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface border-t border-outline">
+<!-- Progress Bar -->
+<div class="h-1 bg-surface-container">
+<div class="h-full bg-secondary transition-all duration-1000" style="width: 66%;"></div>
+</div>
+<div class="px-margin-mobile py-4 flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-mono-data text-mono-data text-on-surface-variant">FUNDS_IN_ESCROW:</span>
+<span class="font-mono-label text-mono-label font-bold">12,450.00 USDC</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-mono-data text-mono-data text-on-surface-variant">RELEASE_READY:</span>
+<span class="font-mono-label text-mono-label text-secondary font-bold">66.6%</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-high border border-outline font-mono-label text-mono-label py-4 uppercase active:bg-surface-container-highest transition-colors">
+                    REJECT
+                </button>
+<button class="flex-[2] bg-primary text-on-primary font-mono-label text-mono-label py-4 uppercase border border-primary active:opacity-80 transition-opacity">
+                    RELEASE_PARTIAL
+                </button>
+</div>
+</div>
+</div>
+<!-- Background Atmospheric Elements -->
+<div class="fixed inset-0 pointer-events-none z-[-1] opacity-5">
+<div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle at 2px 2px, #916f65 1px, transparent 0); background-size: 24px 24px;"></div>
+</div>
+<script>
+        // Simple interaction for progress bar animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const bar = document.querySelector('.bg-secondary');
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = '66%';
+            }, 300);
+        });
+
+        // Toggle mobile dark mode (optional extra)
+        function toggleSystemMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+</body></html>

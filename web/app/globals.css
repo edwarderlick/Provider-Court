@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Material Symbols default rendering (used across every Stitch screen) */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+html,
+body {
+  background-color: #fff8f6;
+  color: #281712;
+}
+
+/* Brutalist "stamped" card — border + hard offset shadow (landing/spec cards) */
+.hardware-module {
+  border: 1px solid #281712;
+  box-shadow: 4px 4px 0px #281712;
+}
+
+/* Flatter hardware border used on dashboards / job detail cards */
+.hardware-border {
+  border: 1px solid #1a1a1a;
+}
+
+.machine-border {
+  border: 1px solid #1a1a1a;
+}
+
+/* Dot-grid technical background used behind hero/dashboard canvases */
+.bg-technical-grid {
+  background-image: radial-gradient(#e6beb2 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+.bg-technical-lines {
+  background-image: linear-gradient(to right, #e6beb2 1px, transparent 1px),
+    linear-gradient(to bottom, #e6beb2 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Moving highlight line used on several "live" technical panels */
+.scanline {
+  width: 100%;
+  height: 2px;
+  background: rgba(169, 49, 0, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  from {
+    top: 0%;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+/* Pulsing status dot */
+.led-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a93100;
+  box-shadow: 0 0 8px #a93100;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.cursor-crosshair-brutalist {
+  cursor: crosshair;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #916f65;
+}

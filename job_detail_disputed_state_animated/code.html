@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT // DISPUTE_ID_8829</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#9ad2b9",
+                        "on-primary-fixed-variant": "#842500",
+                        "primary": "#a93100",
+                        "surface-container-highest": "#fbdcd3",
+                        "primary-container": "#d34000",
+                        "surface": "#fff8f6",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#fff1ed",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#ffb59e",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004884",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-primary-container": "#fffbff",
+                        "tertiary-fixed-dim": "#a4c9ff",
+                        "surface-tint": "#ad3300",
+                        "primary-fixed-dim": "#ffb59e",
+                        "on-surface": "#281712",
+                        "surface-variant": "#fbdcd3",
+                        "secondary-fixed": "#b6efd5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#5c4037",
+                        "background": "#fff8f6",
+                        "on-secondary-container": "#376c58",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#002116",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#ffdbd0",
+                        "on-background": "#281712",
+                        "secondary": "#326854",
+                        "secondary-container": "#b3ecd2",
+                        "on-tertiary-fixed": "#001c39",
+                        "surface-dim": "#f2d3ca",
+                        "inverse-surface": "#3f2c26",
+                        "tertiary": "#005da8",
+                        "on-secondary-fixed-variant": "#17503d",
+                        "surface-container-high": "#ffe2da",
+                        "inverse-on-surface": "#ffede8",
+                        "on-primary-fixed": "#3a0b00",
+                        "tertiary-container": "#0076d3",
+                        "outline-variant": "#e6beb2",
+                        "surface-container": "#ffe9e3",
+                        "surface-bright": "#fff8f6",
+                        "outline": "#916f65",
+                        "tertiary-fixed": "#d4e3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "technical-gap": "8px",
+                        "margin-desktop": "40px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "mono-label": ["JetBrains Mono"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "mono-data": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "mono-label": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .circuit-bg {
+            background-image: radial-gradient(circle at 1px 1px, #e6beb2 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .glow-orange {
+            box-shadow: 0 0 15px rgba(169, 49, 0, 0.4);
+        }
+        .led-blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Glitch Entrance Animation */
+        @keyframes glitch-in {
+            0% { opacity: 0; transform: translateY(-10px) skewX(10deg); }
+            20% { opacity: 1; transform: translateY(0) skewX(-10deg); }
+            40% { transform: skewX(5deg); }
+            60% { transform: skewX(-5deg); }
+            100% { opacity: 1; transform: skewX(0); }
+        }
+        .animate-glitch {
+            animation: glitch-in 0.4s ease-out forwards;
+        }
+
+        /* Text Pulse Animation */
+        @keyframes text-pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+        .animate-pulse-text {
+            animation: text-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Progress Bar Animation */
+        .progress-bar-fill {
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary selection:text-white">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-outline">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md tracking-tighter text-primary">PROVIDER COURT</span>
+<div class="hidden md:flex gap-6">
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1" href="#">[01] BROWSE JOBS</a>
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1" href="#">[02] PROVIDERS</a>
+<a class="font-mono-label text-mono-label text-primary border-b-2 border-primary font-bold px-2 py-1" href="#">[03] ACTIVITY</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-mono-label text-mono-label px-4 py-2 border border-outline hover:bg-surface-container-high transition-colors">GOVERNANCE</button>
+<button class="font-mono-label text-mono-label px-4 py-2 bg-primary text-on-primary hover:opacity-80 transition-opacity">CONNECT WALLET</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col z-40 bg-surface-container-low border-r border-outline hidden md:flex">
+<div class="p-6 border-b border-outline">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">account_circle</span>
+</div>
+<div>
+<p class="font-mono-label text-mono-label font-bold text-primary leading-none">OPERATOR_082</p>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-1">STATUS: VERIFIED</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 py-4">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-mono-label text-mono-label">[DASHBOARD]</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">add_box</span>
+<span class="font-mono-label text-mono-label">[POST JOB]</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 bg-primary text-on-primary border-l-4 border-on-primary" href="#">
+<span class="material-symbols-outlined">package_2</span>
+<span class="font-mono-label text-mono-label">[DELIVERIES]</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-mono-label text-mono-label">[ANALYTICS]</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-mono-label text-mono-label">[ESCROW]</span>
+</a>
+</nav>
+<div class="p-6 mt-auto border-t border-outline">
+<button class="w-full py-3 bg-primary text-on-primary font-mono-label text-mono-label flex items-center justify-center gap-2 mb-6">
+<span class="material-symbols-outlined">gavel</span>
+            NEW DISPUTE
+        </button>
+<a class="flex items-center gap-3 py-2 text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined text-sm">settings</span>
+<span class="font-mono-label text-mono-label">SETTINGS</span>
+</a>
+<a class="flex items-center gap-3 py-2 text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span class="font-mono-label text-mono-label">LOGOUT</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-24 pb-20 px-margin-desktop min-h-screen circuit-bg">
+<!-- Header Alert Section -->
+<div class="mb-gutter border border-primary bg-surface-container-highest p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 glow-orange animate-glitch">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-3 h-3 bg-primary led-blink"></span>
+<span class="font-mono-label text-mono-label text-primary font-bold">STATE: DISPUTED // RE-ADJUDICATION_PHASE_1</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface uppercase">JOB_ID: #8829-ASIMOV-R4</h1>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-1">INITIATOR: <span class="text-primary font-bold">CONTRACTOR_552</span> // TIMESTAMP: 2024-05-24:14:22:04</p>
+</div>
+<div class="bg-primary text-on-primary p-4 border-2 border-on-primary min-w-[280px]">
+<p class="font-mono-label text-mono-label text-xs opacity-80 mb-1">RE-ADJUDICATION WINDOW CLOSES IN:</p>
+<div class="flex items-baseline gap-2">
+<span class="font-mono-data text-4xl font-bold tracking-widest" id="countdown">47:12:09</span>
+<span class="font-mono-data text-xs">HH:MM:SS</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Dispute Specs -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter">
+<!-- Appeal Details -->
+<div class="border border-outline bg-surface p-0">
+<div class="bg-surface-container-low border-b border-outline px-6 py-3 flex justify-between items-center">
+<span class="font-mono-label text-mono-label font-bold">[01] APPEAL_SPECIFICATION</span>
+<span class="font-mono-data text-mono-data bg-primary-container text-on-primary-container px-2 py-0.5">HIGH_PRIORITY</span>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<h3 class="font-mono-label text-mono-label text-primary mb-2">CONTESTED CLAUSES</h3>
+<div class="space-y-3">
+<div class="border-l-4 border-primary bg-surface-container-low p-4">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono-label text-mono-label font-bold">CLAUSE 4.2: LATENCY_THRESHOLD</span>
+<span class="material-symbols-outlined text-primary">warning</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+                                    "Service provider guarantees sub-40ms round-trip latency to Tokyo-A node. Failure results in 15% fee penalty."
+                                </p>
+<div class="mt-4 border-t border-outline-variant pt-3">
+<p class="font-mono-data text-mono-data text-primary"><span class="font-bold">ARGUMENT:</span> Contractor provided proof of network congestion caused by protocol-level DDoS (Provider-side) that shouldn't trigger penalty.</p>
+</div>
+</div>
+<div class="border-l-4 border-primary bg-surface-container-low p-4">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono-label text-mono-label font-bold">CLAUSE 7.1: UPTIME_VERIFICATION</span>
+<span class="material-symbols-outlined text-primary">warning</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+                                    "Uptime must be 99.99% as verified by Oracle 'HYPERION-7'."
+                                </p>
+<div class="mt-4 border-t border-outline-variant pt-3">
+<p class="font-mono-data text-mono-data text-primary"><span class="font-bold">ARGUMENT:</span> Oracle discrepancy detected. Local logs show 100% uptime; Oracle experienced heart-beat lag.</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-mono-label text-mono-label text-primary mb-2">EVIDENCE_STACK</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="border border-outline-variant p-4 flex items-center gap-4 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-4xl group-hover:text-primary">description</span>
+<div>
+<p class="font-mono-label text-mono-label">LOG_DUMP_0422.CSV</p>
+<p class="font-mono-data text-mono-data opacity-60">4.2MB // SHA-256 VERIFIED</p>
+</div>
+</div>
+<div class="border border-outline-variant p-4 flex items-center gap-4 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-4xl group-hover:text-primary">video_file</span>
+<div>
+<p class="font-mono-label text-mono-label">LATENCY_SCREENRECORD.MP4</p>
+<p class="font-mono-data text-mono-data opacity-60">128MB // METADATA_SIGNED</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Financial & Actions -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<!-- Bond Status Card -->
+<div class="border border-outline bg-surface p-0">
+<div class="bg-surface-container-low border-b border-outline px-6 py-3">
+<span class="font-mono-label text-mono-label font-bold">[02] DISPUTE_BOND</span>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-end mb-6">
+<div>
+<p class="font-mono-data text-mono-data text-on-surface-variant">ACTIVE APPEAL BOND</p>
+<p class="text-4xl font-bold font-mono-data text-on-surface">5,400 <span class="text-lg opacity-40">GEN</span></p>
+</div>
+<div class="text-right">
+<p class="font-mono-data text-mono-data text-secondary animate-pulse-text">STATUS: LOCKED</p>
+<p class="font-mono-data text-mono-data text-on-surface-variant">ESCROW_ID: E-7712</p>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest h-2 mb-2">
+<div class="bg-primary h-full" style="width: 100%"></div>
+</div>
+<p class="font-mono-data text-mono-data text-primary text-xs text-center uppercase tracking-tighter">Bond posted by contractor to initiate appeal</p>
+</div>
+</div>
+<!-- Adjudication Module -->
+<div class="border border-outline bg-surface p-0 flex-1">
+<div class="bg-surface-container-low border-b border-outline px-6 py-3">
+<span class="font-mono-label text-mono-label font-bold">[03] RE-ADJUDICATION_PANEL</span>
+</div>
+<div class="p-6 flex flex-col h-full">
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                        This dispute is currently in the public re-adjudication phase. Registered jurors can submit their assessment until the window closes.
+                    </p>
+<div class="space-y-4 mb-8">
+<div class="flex flex-col gap-2 py-2 border-b border-outline-variant">
+<div class="flex justify-between items-center">
+<span class="font-mono-label text-mono-label">TOTAL JURORS</span>
+<span class="font-mono-data text-mono-data font-bold">12 / 24</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 overflow-hidden">
+<div class="bg-primary h-full progress-bar-fill" id="juror-progress"></div>
+</div>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant">
+<span class="font-mono-label text-mono-label">CONSENSUS_THRESHOLD</span>
+<span class="font-mono-data text-mono-data font-bold">66.7%</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant">
+<span class="font-mono-label text-mono-label">ESTIMATED_RESOLVE</span>
+<span class="font-mono-data text-mono-data font-bold">2024-05-26</span>
+</div>
+</div>
+<div class="mt-auto space-y-3">
+<button class="w-full py-4 bg-primary text-on-primary font-mono-label text-mono-label font-bold hover:opacity-90 transition-opacity">
+                            SUBMIT JUROR ASSESSMENT
+                        </button>
+<button class="w-full py-4 border border-outline font-mono-label text-mono-label hover:bg-surface-container-low transition-colors">
+                            DOWNLOAD DISPUTE PACKAGE
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-4 px-margin-desktop flex flex-col md:flex-row justify-between items-center bg-surface-dim border-t border-outline">
+<span class="font-mono-label text-mono-label text-primary">©2024 PROVIDER COURT // PROTOCOL_V1.0.4</span>
+<div class="flex gap-6 mt-4 md:mt-0">
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">[LEGAL]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">[STATUS: OK]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">[API_DOCS]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">[NETWORK_LATENCY: 24MS]</a>
+</div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+    // Real-time Countdown Logic
+    let remainingSeconds = (47 * 3600) + (12 * 60) + 9;
+    const countdownEl = document.getElementById('countdown');
+
+    function updateCountdown() {
+        if (remainingSeconds <= 0) return;
+        
+        remainingSeconds--;
+        
+        const h = Math.floor(remainingSeconds / 3600);
+        const m = Math.floor((remainingSeconds % 3600) / 60);
+        const s = remainingSeconds % 60;
+        
+        countdownEl.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    // Progress Bar Animation on Load
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const progressBar = document.getElementById('juror-progress');
+            if (progressBar) {
+                // 12 out of 24 is 50%
+                progressBar.style.width = '50%';
+            }
+        }, 300);
+    });
+</script>
+</body></html>

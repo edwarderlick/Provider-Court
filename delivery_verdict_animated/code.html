@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT - Delivery &amp; Verdict</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-container": "#376c58",
+            "tertiary-fixed": "#d4e3ff",
+            "outline": "#916f65",
+            "surface-tint": "#ad3300",
+            "on-tertiary-fixed-variant": "#004884",
+            "on-surface": "#281712",
+            "tertiary-fixed-dim": "#a4c9ff",
+            "secondary-fixed": "#b6efd5",
+            "surface-container-low": "#fff1ed",
+            "on-primary-container": "#fffbff",
+            "on-secondary-fixed": "#002116",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "tertiary": "#005da8",
+            "surface-dim": "#f2d3ca",
+            "surface-container": "#ffe9e3",
+            "secondary": "#326854",
+            "surface-variant": "#fbdcd3",
+            "surface-bright": "#fff8f6",
+            "secondary-fixed-dim": "#9ad2b9",
+            "on-primary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "inverse-surface": "#3f2c26",
+            "surface": "#fff8f6",
+            "tertiary-container": "#0076d3",
+            "primary": "#a93100",
+            "on-error-container": "#93000a",
+            "on-tertiary-container": "#fdfcff",
+            "surface-container-high": "#ffe2da",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#001c39",
+            "on-primary-fixed": "#3a0b00",
+            "inverse-primary": "#ffb59e",
+            "on-background": "#281712",
+            "on-secondary-fixed-variant": "#17503d",
+            "outline-variant": "#e6beb2",
+            "surface-container-highest": "#fbdcd3",
+            "secondary-container": "#b3ecd2",
+            "on-primary-fixed-variant": "#842500",
+            "primary-container": "#d34000",
+            "primary-fixed": "#ffdbd0",
+            "on-error": "#ffffff",
+            "on-surface-variant": "#5c4037",
+            "primary-fixed-dim": "#ffb59e",
+            "background": "#fff8f6",
+            "inverse-on-surface": "#ffede8",
+            "deep-green": "#00402E"
+          },
+          "borderRadius": {
+            "DEFAULT": "0px",
+            "lg": "0px",
+            "xl": "0px",
+            "full": "9999px"
+          },
+          "spacing": {
+            "unit": "4px",
+            "margin-mobile": "16px",
+            "gutter": "16px",
+            "margin-desktop": "40px",
+            "technical-gap": "8px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "mono-label": ["JetBrains Mono"],
+            "mono-data": ["JetBrains Mono"]
+          },
+          "animation": {
+            "slide-down": "slideDown 0.5s ease-out forwards",
+            "scanline": "scanline 8s linear infinite"
+          },
+          "keyframes": {
+            "slideDown": {
+              "0%": { opacity: "0", transform: "translateY(-10px)" },
+              "100%": { opacity: "1", transform: "translateY(0)" }
+            },
+            "scanline": {
+              "0%": { transform: "translateY(-100%)" },
+              "100%": { transform: "translateY(100%)" }
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #fff8f6;
+      color: #281712;
+      -webkit-font-smoothing: antialiased;
+    }
+    .technical-grid {
+      background-size: 20px 20px;
+      background-image: radial-gradient(circle, #e6beb2 1px, transparent 1px);
+    }
+    .hardware-border {
+      border: 1px solid #1A1A1A;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .cursor-crosshair { cursor: crosshair; }
+
+    .scanline-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(169, 49, 0, 0.05) 50%,
+        rgba(169, 49, 0, 0.05) 51%,
+        transparent 51%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 10;
+    }
+    
+    .scan-beam {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, rgba(169, 49, 0, 0.1), transparent);
+      animation: scanline 4s linear infinite;
+      pointer-events: none;
+      z-index: 11;
+    }
+
+    .reveal-item {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky border-b border-outline dark:border-outline-variant bg-surface z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-technical-gap max-w-full">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md font-black tracking-tighter text-primary">PROVIDER COURT</h1>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-mono-label text-mono-label hover:text-primary transition-colors" href="#">Browse Jobs</a>
+<a class="text-on-surface-variant font-mono-label text-mono-label hover:text-primary transition-colors" href="#">Providers</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-mono-label text-mono-label" href="#">Activity</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary font-mono-label text-mono-label px-4 py-2 flex items-center gap-2 active:scale-95 duration-75">
+          Connect Wallet
+        </button>
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-primary-fixed-dim/10 p-2 transition-all">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-primary-fixed-dim/10 p-2 transition-all">settings</span>
+</div>
+</div>
+</header>
+<div class="flex flex-1 relative">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen w-64 sticky left-0 border-r border-outline dark:border-outline-variant bg-surface-container-low py-6 space-y-4">
+<div class="px-6 mb-8">
+<div class="font-mono-data text-mono-data text-primary">[01] STATUS: OPERATIONAL</div>
+<div class="font-mono-data text-mono-data opacity-60">Network: Mainnet-Alpha</div>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all font-mono-label text-mono-label" href="#">
+<span class="material-symbols-outlined">add_box</span> Post a Job
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all font-mono-label text-mono-label" href="#">
+<span class="material-symbols-outlined">folder_shared</span> My Jobs
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-on-primary font-bold border-l-4 border-primary font-mono-label text-mono-label" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span> My Deliveries
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all font-mono-label text-mono-label" href="#">
+<span class="material-symbols-outlined">terminal</span> Analytics
+        </a>
+</nav>
+<div class="mt-auto px-2 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary font-mono-label text-mono-label" href="#">
+<span class="material-symbols-outlined">description</span> Documentation
+        </a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 technical-grid p-margin-desktop space-y-gutter overflow-x-hidden">
+<!-- [01] Delivery Header / Delivered Artifact -->
+<section class="max-w-6xl mx-auto space-y-4">
+<div class="flex items-end justify-between border-b border-on-surface pb-2">
+<div>
+<h2 class="font-headline-lg text-headline-lg uppercase tracking-tighter">[01] Delivery Artifact</h2>
+<p class="font-mono-label text-mono-label opacity-70">JOB_ID: PC-40-RIDDIM-2024 / PROVIDER: EP-SAMPLER_01</p>
+</div>
+<div class="bg-secondary px-3 py-1 text-on-secondary font-mono-data text-mono-data">
+            STATUS: RELEASED_PARTIAL
+          </div>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-12 lg:col-span-8 hardware-border bg-surface-container p-6 relative overflow-hidden group">
+<!-- Scanline & Beam Overlays -->
+<div class="scanline-overlay"></div>
+<div class="scan-beam"></div>
+<!-- Subtle wire Trace background element -->
+<div class="absolute top-0 right-0 w-32 h-32 opacity-10 pointer-events-none">
+<svg class="w-full h-full fill-none stroke-on-surface" stroke-width="0.5" viewbox="0 0 100 100">
+<path d="M0 20 H80 V100 M20 0 V80 H100"></path>
+</svg>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-20">
+<span class="font-mono-data text-mono-data bg-on-surface text-surface px-2 py-0.5">CONTENT_VIEWER_V1.0</span>
+<button class="font-mono-label text-mono-label text-primary hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">download</span> RAW_DATA.TXT
+              </button>
+</div>
+<div class="font-mono-data text-body-md leading-relaxed space-y-4 border-l-2 border-primary pl-6 py-2 relative z-20">
+<p>The delivered riddim sequence "SUPERTONE_REV3" includes 12 sample pads pre-mapped to the requested Industrial Synth soundset. All loops are synchronized to 124 BPM as specified in the original smart contract.</p>
+<p>Included components:</p>
+<ul class="list-none space-y-1">
+<li>&gt; BASS_LINE_G_MINOR.WAV</li>
+<li>&gt; PERC_LOOP_01_CLEAN.WAV</li>
+<li>&gt; FX_STAB_ATMOS.WAV</li>
+</ul>
+<p>The original layering machine protocol was followed. Signal path remains uncompressed for maximum headroom during final mixing stages.</p>
+</div>
+</div>
+<!-- Secondary visual module -->
+<div class="col-span-12 lg:col-span-4 hardware-border bg-surface-container-high p-6 flex flex-col items-center justify-center text-center">
+<div class="w-full aspect-square border border-outline mb-4 relative flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover grayscale brightness-75 contrast-125" data-alt="A hardware macro shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtY9lnB8k23Uoi8SjFVvG2p4ZBLFtABvjY_ymnUaQgl43RSRkyl0Tnb9pFKstgbakcqqLwPtQDeIp8VTICOqRmxNvxq-c3KttMpxzaaPL8k40sljHVEy80pFBflyVeJCAg0ChQ8SPj5FBa2-LcjSbA1hbYU7_lZqNyf7sERpKMtZfPze8o8DCY8mhuuMigITP8A2AjlgP6ngqPBW9MqShvd912phfQefcvi0w2hJVflX7-taieVuf3EUsS_TTZP3Z_ZWuatF5aNMD9"/>
+<div class="absolute inset-0 border-[10px] border-surface-container-high pointer-events-none"></div>
+<div class="absolute top-2 left-2 font-mono-data text-[10px] bg-primary text-on-primary px-1">PREVIEW_GEN_04</div>
+</div>
+<p class="font-mono-data text-mono-data uppercase">Waveform Analysis complete.</p>
+</div>
+</div>
+</section>
+<!-- [02] Verdict List -->
+<section class="max-w-6xl mx-auto space-y-6">
+<div class="flex items-center gap-4">
+<div class="h-px bg-on-surface flex-1"></div>
+<h3 class="font-headline-md text-headline-md italic uppercase tracking-widest">[02] Verdicts</h3>
+<div class="h-px bg-on-surface flex-1"></div>
+</div>
+<div class="space-y-technical-gap" id="verdict-list">
+<!-- Verdict Row 1: PASS -->
+<div class="reveal-item grid grid-cols-12 items-center hardware-border bg-surface hover:bg-surface-bright transition-colors group cursor-crosshair">
+<div class="col-span-1 p-4 flex justify-center border-r border-outline">
+<span class="material-symbols-outlined text-secondary font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="col-span-7 p-4">
+<div class="font-mono-label text-mono-label uppercase font-bold">Clause: BPM Synchronization</div>
+<div class="font-mono-data text-mono-data opacity-60">Evidence: Metadata scan confirms master clock at 124.000 BPM.</div>
+</div>
+<div class="col-span-4 p-4 text-right">
+<span class="bg-secondary-container text-on-secondary-container font-mono-data text-mono-data px-3 py-1">VERDICT: PASS</span>
+</div>
+</div>
+<!-- Verdict Row 2: PASS -->
+<div class="reveal-item grid grid-cols-12 items-center hardware-border bg-surface hover:bg-surface-bright transition-colors group cursor-crosshair">
+<div class="col-span-1 p-4 flex justify-center border-r border-outline">
+<span class="material-symbols-outlined text-secondary font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="col-span-7 p-4">
+<div class="font-mono-label text-mono-label uppercase font-bold">Clause: Sample Count</div>
+<div class="font-mono-data text-mono-data opacity-60">Evidence: Found 12/12 individual stems in the delivery package.</div>
+</div>
+<div class="col-span-4 p-4 text-right">
+<span class="bg-secondary-container text-on-secondary-container font-mono-data text-mono-data px-3 py-1">VERDICT: PASS</span>
+</div>
+</div>
+<!-- Verdict Row 3: FAIL/ISSUE -->
+<div class="reveal-item grid grid-cols-12 items-center hardware-border bg-surface-container-low border-primary transition-colors group cursor-crosshair">
+<div class="col-span-1 p-4 flex justify-center border-r border-primary">
+<span class="material-symbols-outlined text-primary font-bold">warning</span>
+</div>
+<div class="col-span-7 p-4">
+<div class="font-mono-label text-mono-label uppercase font-bold text-primary">Clause: Dynamic Range</div>
+<div class="font-mono-data text-mono-data text-on-surface">Evidence: Peak clipping detected on FX_STAB_ATMOS (-0.2dB threshold exceeded).</div>
+</div>
+<div class="col-span-4 p-4 text-right">
+<span class="bg-primary text-on-primary font-mono-data text-mono-data px-3 py-1">VERDICT: FAILED_SPEC</span>
+</div>
+</div>
+</div>
+</section>
+<!-- [03] Release State & Actions -->
+<section class="max-w-6xl mx-auto pt-8">
+<div class="hardware-border bg-surface p-8 space-y-8">
+<div class="flex justify-between items-center">
+<div class="space-y-1">
+<h4 class="font-mono-label text-mono-label uppercase font-black">Release Progress</h4>
+<p class="font-mono-data text-mono-data opacity-60 italic">Funds held in escrow pending final validation.</p>
+</div>
+<div class="text-right">
+<div class="font-headline-md text-headline-md font-black" id="progress-text">0%</div>
+<div class="font-mono-data text-mono-data uppercase">Partial Release</div>
+</div>
+</div>
+<!-- Release Bar -->
+<div class="w-full h-12 hardware-border p-1 bg-surface-container-highest relative overflow-hidden">
+<!-- Deep Green Fill -->
+<div class="h-full bg-deep-green w-0 transition-all duration-[1500ms] ease-out relative group" id="release-bar">
+<div class="absolute inset-0 bg-white/5 animate-pulse"></div>
+<!-- Shimmer highlight -->
+<div class="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite]"></div>
+</div>
+<!-- Target Marker -->
+<div class="absolute top-0 bottom-0 left-[82%] w-0.5 bg-primary z-10"></div>
+</div>
+<div class="flex flex-col md:flex-row gap-4 justify-between pt-4">
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-8 py-3 font-mono-label text-mono-label font-bold uppercase transition-all duration-200 hover:bg-primary-container hover:scale-105 active:scale-95">
+                Release Balance
+              </button>
+<button class="border border-on-surface px-8 py-3 font-mono-label text-mono-label font-bold uppercase transition-all duration-200 hover:bg-primary hover:text-on-primary hover:border-primary hover:scale-105 active:scale-95">
+                Appeal Verdict
+              </button>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined">help_center</span>
+<span class="font-mono-data text-mono-data">Need technical support? <a class="underline" href="#">Contact Escrow Officer</a></span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full border-t border-outline dark:border-outline-variant mt-20 bg-surface-container-lowest">
+<div class="grid grid-cols-12 gap-gutter px-margin-desktop py-12 w-full items-center">
+<div class="col-span-12 lg:col-span-4">
+<div class="font-headline-lg text-headline-lg font-black text-on-surface opacity-10 leading-none">RIDDIM®</div>
+</div>
+<div class="col-span-12 lg:col-span-4 flex flex-wrap gap-x-8 gap-y-2 justify-center">
+<a class="font-mono-data text-mono-data uppercase text-on-surface-variant hover:text-primary transition-colors cursor-crosshair" href="#">Privacy Policy</a>
+<a class="font-mono-data text-mono-data uppercase text-on-surface-variant hover:text-primary transition-colors cursor-crosshair" href="#">Terms of Service</a>
+<a class="font-mono-data text-mono-data uppercase text-on-surface-variant hover:text-primary transition-colors cursor-crosshair" href="#">API Specs</a>
+<a class="font-mono-data text-mono-data uppercase text-on-surface-variant hover:text-primary transition-colors cursor-crosshair" href="#">Uptime Status</a>
+</div>
+<div class="col-span-12 lg:col-span-4 text-right">
+<p class="font-mono-data text-mono-data uppercase text-on-surface-variant">
+          © 2024 PROVIDER COURT ESCROW PROTOCOL [REV 1.0.4]
+        </p>
+</div>
+</div>
+</footer>
+<script>
+    // Animation for progress bar and percentage text
+    window.addEventListener('load', () => {
+      const bar = document.getElementById('release-bar');
+      const text = document.getElementById('progress-text');
+      const target = 82;
+      
+      // Animate bar width
+      setTimeout(() => {
+        bar.style.width = target + '%';
+      }, 300);
+
+      // Animate percentage text
+      let current = 0;
+      const duration = 1500;
+      const interval = 15;
+      const increment = target / (duration / interval);
+      
+      const counter = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          text.innerText = target + '%';
+          clearInterval(counter);
+        } else {
+          text.innerText = Math.floor(current) + '%';
+        }
+      }, interval);
+
+      // Revealing entrance for clauses
+      const clauses = document.querySelectorAll('.reveal-item');
+      clauses.forEach((item, index) => {
+        item.style.animation = `slideDown 0.5s ease-out forwards ${0.5 + (index * 0.2)}s`;
+      });
+    });
+
+    // Shimmer animation via JS injection for the progress bar
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes shimmer {
+        from { transform: translateX(-100%) skewX(12deg); }
+        to { transform: translateX(1000%) skewX(12deg); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Micro-interactions for buttons
+    document.querySelectorAll('button, a').forEach(el => {
+      el.addEventListener('mousedown', () => {
+        el.classList.add('scale-95');
+      });
+      el.addEventListener('mouseup', () => {
+        el.classList.remove('scale-95');
+      });
+    });
+  </script>
+</body></html>

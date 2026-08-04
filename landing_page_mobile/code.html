@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT | Intelligent Contract Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#9ad2b9",
+                    "on-primary-fixed-variant": "#842500",
+                    "primary": "#a93100",
+                    "surface-container-highest": "#fbdcd3",
+                    "primary-container": "#d34000",
+                    "surface": "#fff8f6",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#fff1ed",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#ffb59e",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004884",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#fdfcff",
+                    "on-primary-container": "#fffbff",
+                    "tertiary-fixed-dim": "#a4c9ff",
+                    "surface-tint": "#ad3300",
+                    "primary-fixed-dim": "#ffb59e",
+                    "on-surface": "#281712",
+                    "surface-variant": "#fbdcd3",
+                    "secondary-fixed": "#b6efd5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#5c4037",
+                    "background": "#fff8f6",
+                    "on-secondary-container": "#376c58",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#002116",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#ffdbd0",
+                    "on-background": "#281712",
+                    "secondary": "#326854",
+                    "secondary-container": "#b3ecd2",
+                    "on-tertiary-fixed": "#001c39",
+                    "surface-dim": "#f2d3ca",
+                    "inverse-surface": "#3f2c26",
+                    "tertiary": "#005da8",
+                    "on-secondary-fixed-variant": "#17503d",
+                    "surface-container-high": "#ffe2da",
+                    "inverse-on-surface": "#ffede8",
+                    "on-primary-fixed": "#3a0b00",
+                    "tertiary-container": "#0076d3",
+                    "outline-variant": "#e6beb2",
+                    "surface-container": "#ffe9e3",
+                    "surface-bright": "#fff8f6",
+                    "outline": "#916f65",
+                    "tertiary-fixed": "#d4e3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "technical-gap": "8px",
+                    "margin-desktop": "40px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "mono-data": ["JetBrains Mono"],
+                    "mono-label": ["JetBrains Mono"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "mono-data": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "mono-label": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fff8f6;
+            color: #281712;
+            overflow-x: hidden;
+        }
+        .technical-grid {
+            background-image: radial-gradient(#916f65 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+        .circuit-line {
+            position: absolute;
+            background: #916f65;
+            opacity: 0.2;
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(169, 49, 0, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan {
+            from { top: 0%; }
+            to { top: 100%; }
+        }
+        .hardware-border {
+            border: 1px solid #281712;
+            box-shadow: 2px 2px 0px #281712;
+        }
+        .active-glow {
+            box-shadow: 0 0 10px rgba(169, 49, 0, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md antialiased">
+<!-- TopNavBar Implementation -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface border-b border-outline dark:border-outline-variant md:px-margin-desktop">
+<div class="font-headline-md text-headline-md-mobile tracking-tighter text-primary dark:text-primary-fixed uppercase font-bold">
+            PROVIDER COURT
+        </div>
+<button class="material-symbols-outlined text-primary p-2">
+            menu
+        </button>
+</header>
+<!-- Hero Section -->
+<main class="relative pt-16 min-h-screen technical-grid flex flex-col">
+<div class="scanline"></div>
+<!-- Technical Graphic Area -->
+<div class="relative w-full aspect-square flex items-center justify-center overflow-hidden p-margin-mobile">
+<div class="relative w-full h-full border border-outline opacity-50">
+<!-- Circuit Board Visualization -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-48 h-48 border-2 border-primary rotate-45 flex items-center justify-center">
+<div class="w-32 h-32 border border-secondary p-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary scale-[3]" style="font-variation-settings: 'wght' 200;">hub</span>
+</div>
+</div>
+</div>
+<!-- Connector Traces -->
+<div class="circuit-line w-[1px] h-full left-1/4"></div>
+<div class="circuit-line w-[1px] h-full right-1/4"></div>
+<div class="circuit-line w-full h-[1px] top-1/4"></div>
+<div class="circuit-line w-full h-[1px] bottom-1/4"></div>
+<!-- Status LEDs -->
+<div class="absolute top-4 left-4 flex gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<div class="w-2 h-2 rounded-full bg-primary opacity-30"></div>
+</div>
+<!-- Data Stream Tag -->
+<div class="absolute bottom-4 right-4 bg-surface-container-high border border-outline px-2 py-1">
+<span class="font-mono-data text-mono-data text-primary">[SYSTEM_BOOT: READY]</span>
+</div>
+</div>
+<!-- Technical Overlay Card (Bento Style) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 hardware-border bg-surface p-4 flex flex-col gap-technical-gap">
+<div class="flex justify-between items-center border-b border-outline pb-2">
+<span class="font-mono-label text-mono-data text-on-surface-variant">[PROTOCOL_V1]</span>
+<span class="font-mono-label text-mono-data text-secondary">ACTIVE</span>
+</div>
+<div class="font-mono-data text-[10px] leading-tight text-on-surface-variant opacity-60">
+                    LATENCY: 24MS<br/>
+                    NODES: 1,024<br/>
+                    ESCROW: SECURED
+                </div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex-grow px-margin-mobile pb-24 flex flex-col">
+<div class="mb-4">
+<span class="font-mono-label text-mono-label text-primary bg-primary-fixed px-2 py-1">[01] MARKETPLACE_INIT</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight mb-6">
+                Intelligent <br/>
+<span class="text-primary italic">Contract</span> <br/>
+                Marketplace.
+            </h1>
+<p class="text-on-surface-variant mb-8 max-w-xs">
+                A brutalist approach to decentralized escrow. Automated resolution, technical transparency, and hardware-grade security for the modern provider.
+            </p>
+<div class="flex flex-col gap-4">
+<button class="w-full h-14 bg-primary text-on-primary font-mono-label text-lg tracking-widest flex items-center justify-center hardware-border active:translate-x-1 active:translate-y-1 transition-transform">
+                    ENTER APP
+                </button>
+<button class="w-full h-14 border border-outline text-on-surface font-mono-label text-lg tracking-widest flex items-center justify-center hover:bg-surface-container-high transition-colors">
+                    [READ_DOCS]
+                </button>
+</div>
+<!-- Bottom Data Cluster -->
+<div class="mt-12 grid grid-cols-2 gap-4">
+<div class="border-l-2 border-primary pl-3">
+<div class="font-mono-label text-mono-data text-on-surface-variant opacity-70">TOTAL_TVL</div>
+<div class="font-headline-md text-xl">$12.4M</div>
+</div>
+<div class="border-l-2 border-secondary pl-3">
+<div class="font-mono-label text-mono-data text-on-surface-variant opacity-70">ACTIVE_JOBS</div>
+<div class="font-headline-md text-xl">842</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Primary) -->
+<nav class="fixed bottom-0 left-0 w-full h-16 bg-surface border-t border-outline flex items-center justify-around z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-mono-data text-[10px]">HOME</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-mono-data text-[10px]">BROWSE</span>
+</a>
+<div class="relative -top-4">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center hardware-border">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-mono-data text-[10px]">WALLET</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-mono-data text-[10px]">CONFIG</span>
+</a>
+</nav>
+<!-- Footer Implementation (Subtle Data Strip) -->
+<footer class="w-full py-4 px-margin-mobile bg-surface-dim border-t border-outline mb-16 flex flex-col gap-2">
+<div class="flex justify-between items-center opacity-60">
+<span class="font-mono-data text-[10px]">©2024 PROVIDER COURT // PROTOCOL_V1.0.4</span>
+<span class="font-mono-data text-[10px] text-secondary">STATUS: OK</span>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar py-2">
+<span class="font-mono-data text-[10px] whitespace-nowrap bg-surface-container-high px-2">[LEGAL]</span>
+<span class="font-mono-data text-[10px] whitespace-nowrap bg-surface-container-high px-2">[API_DOCS]</span>
+<span class="font-mono-data text-[10px] whitespace-nowrap bg-surface-container-high px-2">[NETWORK_LATENCY: 24MS]</span>
+</div>
+</footer>
+<script>
+        // Micro-interaction for technical feeling
+        document.addEventListener('mousemove', (e) => {
+            const scanline = document.querySelector('.scanline');
+            if(scanline) {
+                // Subtle flicker effect on interaction
+                if(Math.random() > 0.98) {
+                    scanline.style.opacity = '0.5';
+                    setTimeout(() => scanline.style.opacity = '0.1', 50);
+                }
+            }
+        });
+
+        // Simple hardware "switch" sound simulation or click feedback
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.classList.add('opacity-80');
+            });
+            btn.addEventListener('touchend', () => {
+                btn.classList.remove('opacity-80');
+            });
+        });
+    </script>
+</body></html>

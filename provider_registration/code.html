@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT // REGISTRATION</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom cursor and scrollbar for Industrial Synth aesthetic */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #f2d3ca; }
+        ::-webkit-scrollbar-thumb { background: #a93100; }
+        
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, #e6e2d3 1px, transparent 1px),
+                linear-gradient(to bottom, #e6e2d3 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .technical-corner {
+            position: relative;
+        }
+        .technical-corner::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid #a93100;
+            border-left: 2px solid #a93100;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-width: 2px !important;
+            border-color: #a93100 !important;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(169, 49, 0, 0.1);
+            position: absolute;
+            top: 0;
+            animation: scan 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+    </style>
+<!-- CSS and Theme Config included in head -->
+</head>
+<body class="bg-background font-body-md text-on-surface grid-bg min-h-screen overflow-x-hidden">
+<!-- TopNavBar from JSON -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-outline dark:border-outline-variant">
+<div class="flex items-center gap- तकनीकी-gap">
+<span class="font-headline-md text-headline-md tracking-tighter text-primary">PROVIDER COURT</span>
+<span class="ml-4 font-mono-label text-mono-label px-2 py-1 bg-surface-container-high border border-outline text-on-surface-variant">V1.0.4</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-3 py-2" href="#">[01] BROWSE JOBS</a>
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-3 py-2" href="#">[02] PROVIDERS</a>
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-3 py-2" href="#">[03] ACTIVITY</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-2 border border-outline">GOVERNANCE</button>
+<button class="font-mono-label text-mono-label bg-primary text-on-primary px-4 py-2 border border-primary active:opacity-80 transition-opacity">CONNECT WALLET</button>
+</div>
+</nav>
+<!-- SideNavBar from JSON (Filtered for relevance, keeping as navigational anchor) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col z-40 bg-surface-container-low border-r border-outline dark:border-outline-variant">
+<div class="p-6 border-b border-outline">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest border border-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</div>
+<div>
+<p class="font-mono-label text-mono-label text-primary">OPERATOR_082</p>
+<p class="text-[10px] font-mono-data text-on-surface-variant">STATUS: VERIFIED</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 py-4">
+<div class="px-4 mb-2 text-[10px] font-mono-data text-outline">MAIN_FUNCTIONS</div>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span> [DASHBOARD]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label bg-primary text-on-primary border-l-4 border-on-primary" href="#">
+<span class="material-symbols-outlined">add_box</span> [POST JOB]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">package_2</span> [DELIVERIES]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">query_stats</span> [ANALYTICS]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span> [ESCROW]
+            </a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full py-3 bg-secondary text-on-secondary font-mono-label text-mono-label border border-secondary hover:opacity-90">NEW DISPUTE</button>
+</div>
+<div class="border-t border-outline p-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 font-mono-label text-mono-label text-on-surface-variant hover:text-primary" href="#"><span class="material-symbols-outlined text-sm">settings</span> SETTINGS</a>
+<a class="flex items-center gap-3 font-mono-label text-mono-label text-on-surface-variant hover:text-primary" href="#"><span class="material-symbols-outlined text-sm">logout</span> LOGOUT</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-16 px-margin-desktop min-h-screen">
+<div class="max-w-4xl mx-auto">
+<!-- Technical Header Section -->
+<header class="mb-12 border-l-4 border-primary pl-6">
+<div class="font-mono-data text-mono-data text-primary mb-1 uppercase tracking-widest">[ SYSTEM_MESSAGE: INITIALIZING_NODE_IDENTIFICATION ]</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tighter">PROVIDER_REGISTRATION</h1>
+<div class="flex items-center gap-4 mt-2">
+<span class="font-mono-label text-mono-label text-on-surface-variant bg-surface-container px-2 py-0.5 border border-outline">AUTH_LEVEL: 01</span>
+<span class="font-mono-label text-mono-label text-on-surface-variant bg-surface-container px-2 py-0.5 border border-outline">REF_ID: REG-01</span>
+<span class="flex items-center gap-2 text-secondary font-mono-label text-mono-label">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                        NETWORK_LINK_STABLE
+                    </span>
+</div>
+</header>
+<!-- Registration Terminal Window -->
+<div class="bg-surface border border-outline technical-corner relative overflow-hidden shadow-sm">
+<div class="scanline"></div>
+<!-- Terminal Bar -->
+<div class="bg-surface-container-highest border-b border-outline px-4 py-2 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-sm">terminal</span>
+<span class="font-mono-label text-mono-label text-on-surface-variant">REGISTRATION_MODULE.EXE</span>
+</div>
+<div class="flex gap-2">
+<div class="w-3 h-3 border border-outline"></div>
+<div class="w-3 h-3 border border-outline"></div>
+<div class="w-3 h-3 bg-primary"></div>
+</div>
+</div>
+<div class="p-8 space-y-10">
+<!-- Display Name Field -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-4">
+<h3 class="font-mono-label text-mono-label text-primary">[01] DISPLAY_NAME</h3>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-2 leading-relaxed">The public identifier for your node. This will be visible to seekers during the bidding process.</p>
+</div>
+<div class="md:col-span-8">
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline font-mono-label text-mono-label p-4 focus:ring-0 focus:border-primary transition-all" placeholder="e.g., NEURAL_LINK_DELTA" type="text"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 font-mono-data text-[10px] text-outline">CHAR_LIMIT: 32</div>
+</div>
+</div>
+</section>
+<div class="h-px bg-outline-variant w-full"></div>
+<!-- Modality Selection (Checkboxes) -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-4">
+<h3 class="font-mono-label text-mono-label text-primary">[02] MODALITY_SUPPORT</h3>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-2 leading-relaxed">Select the data formats your hardware infrastructure is capable of processing safely.</p>
+</div>
+<div class="md:col-span-8">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Modality Card 1 -->
+<label class="group cursor-pointer border border-outline p-4 hover:bg-surface-container-high transition-colors relative">
+<input class="absolute opacity-0 peer" name="modality" type="checkbox" value="text"/>
+<div class="peer-checked:bg-primary/10 absolute inset-0 -z-10 transition-colors"></div>
+<div class="flex flex-col items-center gap-3">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">article</span>
+<span class="font-mono-label text-mono-label">TEXT_LLM</span>
+<div class="w-4 h-4 border border-outline flex items-center justify-center peer-checked:bg-primary">
+<span class="material-symbols-outlined text-[10px] text-on-primary opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</div>
+<div class="absolute top-1 right-1 opacity-20 peer-checked:opacity-100">
+<div class="w-1 h-1 bg-primary rounded-full"></div>
+</div>
+</label>
+<!-- Modality Card 2 -->
+<label class="group cursor-pointer border border-outline p-4 hover:bg-surface-container-high transition-colors relative">
+<input class="absolute opacity-0 peer" name="modality" type="checkbox" value="image"/>
+<div class="peer-checked:bg-primary/10 absolute inset-0 -z-10 transition-colors"></div>
+<div class="flex flex-col items-center gap-3">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">image</span>
+<span class="font-mono-label text-mono-label">IMAGE_GEN</span>
+<div class="w-4 h-4 border border-outline flex items-center justify-center peer-checked:bg-primary">
+<span class="material-symbols-outlined text-[10px] text-on-primary opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</div>
+</label>
+<!-- Modality Card 3 -->
+<label class="group cursor-pointer border border-outline p-4 hover:bg-surface-container-high transition-colors relative">
+<input class="absolute opacity-0 peer" name="modality" type="checkbox" value="audio"/>
+<div class="peer-checked:bg-primary/10 absolute inset-0 -z-10 transition-colors"></div>
+<div class="flex flex-col items-center gap-3">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">audio_file</span>
+<span class="font-mono-label text-mono-label">AUDIO_SYNTH</span>
+<div class="w-4 h-4 border border-outline flex items-center justify-center peer-checked:bg-primary">
+<span class="material-symbols-outlined text-[10px] text-on-primary opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</div>
+</label>
+</div>
+</div>
+</section>
+<div class="h-px bg-outline-variant w-full"></div>
+<!-- Infrastructure Description (Textarea) -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-4">
+<h3 class="font-mono-label text-mono-label text-primary">[03] INFRA_ARCHITECTURE</h3>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-2 leading-relaxed">Technical breakdown of your model setup, GPU clusters, and specialized hardware acceleration details.</p>
+</div>
+<div class="md:col-span-8">
+<div class="relative">
+<textarea class="w-full bg-surface-container-low border border-outline font-mono-label text-mono-label p-4 focus:ring-0 focus:border-primary transition-all resize-none" placeholder="Describe hardware: 4x H100 Cluster, CUDA 12.x, Model: Llama-3-70B-Instruct-Q8..." rows="6"></textarea>
+<div class="absolute bottom-4 right-4 flex gap-4">
+<div class="flex items-center gap-2 font-mono-data text-[10px] text-on-surface-variant">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span> ENCRYPTED_TRANSMISSION
+                                    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Transaction Style Footer Action -->
+<section class="bg-surface-container p-6 border border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-1">
+<span class="font-mono-data text-mono-data text-on-surface-variant uppercase">[ ESTIMATED_REGISTRATION_COST ]</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter">0.024 ETH</span>
+<span class="font-mono-data text-[10px] text-outline italic">Includes smart contract deployment + identity verification gas</span>
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary px-10 py-5 font-mono-label text-mono-label border-2 border-primary hover:bg-on-primary-fixed-variant transition-all flex items-center justify-center gap-3 active:translate-y-1 shadow-[4px_4px_0px_#3a0b00]">
+<span class="material-symbols-outlined">send_and_archive</span>
+                                INITIATE REGISTRATION
+                            </button>
+</div>
+</section>
+</div>
+</div>
+<!-- Supporting Information Cards -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="border border-outline bg-surface-container-low p-4 flex gap-4">
+<span class="material-symbols-outlined text-primary">gavel</span>
+<div>
+<h4 class="font-mono-label text-mono-label text-on-surface">[ESCROW_BONDING]</h4>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-1 leading-normal">Registration requires a minimum bond to ensure honesty. Disputes are resolved by the Provider Court Jury.</p>
+</div>
+</div>
+<div class="border border-outline bg-surface-container-low p-4 flex gap-4">
+<span class="material-symbols-outlined text-primary">security</span>
+<div>
+<h4 class="font-mono-label text-mono-label text-on-surface">[PRIVACY_LAYER]</h4>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-1 leading-normal">Your infrastructure details are stored on-chain but encrypted for verified seeker audits only.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer from JSON -->
+<footer class="w-full py-4 px-margin-desktop flex justify-between items-center bg-surface-dim border-t border-outline">
+<div class="flex flex-col">
+<span class="font-mono-label text-mono-label text-primary">PROVIDER COURT</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">©2024 PROVIDER COURT // PROTOCOL_V1.0.4</span>
+</div>
+<div class="hidden md:flex gap-8">
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[LEGAL]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span> [STATUS: OK]
+            </a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[API_DOCS]</a>
+<span class="font-mono-data text-mono-data text-on-surface-variant">[NETWORK_LATENCY: 24MS]</span>
+</div>
+</footer>
+<!-- Micro-interaction for form inputs -->
+<script>
+        document.querySelectorAll('input, textarea').forEach(el => {
+            el.addEventListener('focus', () => {
+                console.log('Technical terminal input active');
+            });
+        });
+
+        // Add visual feedback on checkboxes
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const parent = this.closest('label');
+                if (this.checked) {
+                    parent.style.borderColor = '#a93100';
+                } else {
+                    parent.style.borderColor = '#916f65';
+                }
+            });
+        });
+    </script>
+</body></html>

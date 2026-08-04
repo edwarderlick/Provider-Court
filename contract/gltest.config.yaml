@@ -1,0 +1,8 @@
+networks:
+  default: studionet
+  studionet:
+    default_wait_interval: 5000
+    default_wait_retries: 60
+
+paths:
+  contracts: contracts

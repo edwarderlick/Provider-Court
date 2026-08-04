@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT // CONNECTION_MANAGER</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .grid-bg {
+            background-image: radial-gradient(circle, #e6beaf 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .machine-border {
+            box-shadow: inset 0 0 0 1px #916f65;
+        }
+        .led-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .4; }
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#005da8",
+                    "secondary-container": "#b3ecd2",
+                    "outline": "#916f65",
+                    "on-surface": "#281712",
+                    "inverse-surface": "#3f2c26",
+                    "surface-container-highest": "#fbdcd3",
+                    "secondary-fixed-dim": "#9ad2b9",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#001c39",
+                    "surface-container-low": "#fff1ed",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#ffe9e3",
+                    "on-primary-container": "#fffbff",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#842500",
+                    "on-background": "#281712",
+                    "tertiary-fixed": "#d4e3ff",
+                    "inverse-on-surface": "#ffede8",
+                    "surface-tint": "#ad3300",
+                    "on-tertiary-fixed-variant": "#004884",
+                    "primary-container": "#d34000",
+                    "primary-fixed": "#ffdbd0",
+                    "surface-dim": "#f2d3ca",
+                    "on-surface-variant": "#5c4037",
+                    "secondary-fixed": "#b6efd5",
+                    "outline-variant": "#e6beb2",
+                    "on-secondary-container": "#376c58",
+                    "tertiary-fixed-dim": "#a4c9ff",
+                    "inverse-primary": "#ffb59e",
+                    "on-tertiary-container": "#fdfcff",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#fbdcd3",
+                    "tertiary-container": "#0076d3",
+                    "surface-container-high": "#ffe2da",
+                    "on-secondary-fixed": "#002116",
+                    "surface": "#fff8f6",
+                    "primary-fixed-dim": "#ffb59e",
+                    "surface-bright": "#fff8f6",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#3a0b00",
+                    "primary": "#a93100",
+                    "background": "#fff8f6",
+                    "on-secondary-fixed-variant": "#17503d",
+                    "secondary": "#326854"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "unit": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "technical-gap": "8px"
+            },
+            "fontFamily": {
+                    "mono-data": ["JetBrains Mono"],
+                    "mono-label": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "mono-data": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "mono-label": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "display-lg": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-hidden selection:bg-primary-fixed selection:text-primary">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-outline">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md tracking-tighter text-primary">PROVIDER COURT</span>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-high transition-colors px-3 py-1" href="#">[01] BROWSE JOBS</a>
+<a class="text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-high transition-colors px-3 py-1" href="#">[02] PROVIDERS</a>
+<a class="text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-high transition-colors px-3 py-1" href="#">[03] ACTIVITY</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-surface-dim text-on-surface-variant font-mono-label text-mono-label border border-outline px-4 py-2 hover:bg-surface-container-highest transition-colors active:opacity-80">GOVERNANCE</button>
+<button class="bg-primary text-on-primary font-mono-label text-mono-label border border-primary px-4 py-2 flex items-center gap-2 hover:bg-primary-container transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+                CONNECT WALLET
+            </button>
+</div>
+</nav>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col z-40 bg-surface-container-low border-r border-outline">
+<div class="p-6 border-b border-outline bg-surface-container">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 border border-outline bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</div>
+<div>
+<p class="font-mono-label text-mono-label text-primary">OPERATOR_082</p>
+<p class="text-[10px] font-mono-data text-on-surface-variant">STATUS: VERIFIED</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col pt-4">
+<a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                [DASHBOARD]
+            </a>
+<a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+                [POST JOB]
+            </a>
+<a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="package_2">package_2</span>
+                [DELIVERIES]
+            </a>
+<a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+                [ANALYTICS]
+            </a>
+<a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+                [ESCROW]
+            </a>
+<div class="px-6 py-4 mt-auto">
+<button class="w-full bg-secondary text-on-secondary font-mono-label text-mono-label py-3 border border-secondary hover:bg-on-secondary-fixed-variant transition-colors">NEW DISPUTE</button>
+</div>
+</nav>
+<div class="border-t border-outline p-4 bg-surface-dim">
+<a class="flex items-center gap-4 px-2 py-2 text-on-surface-variant font-mono-label text-mono-label hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                SETTINGS
+            </a>
+<a class="flex items-center gap-4 px-2 py-2 text-on-surface-variant font-mono-label text-mono-label hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                LOGOUT
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-margin-desktop grid-bg min-h-[calc(100vh-64px)] relative flex items-center justify-center overflow-hidden">
+<!-- Blurred Background Scene for Context -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+
+</div>
+<div class="relative z-10 w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-gutter items-start">
+<!-- Left Side: Wallet Selection Modal -->
+<div class="bg-surface border border-outline p-0 flex flex-col machine-border">
+<div class="bg-surface-container p-4 border-b border-outline flex justify-between items-center">
+<h2 class="font-mono-label text-mono-label font-bold text-on-surface">
+<span class="text-primary mr-2">[01]</span>WALLET_SELECTION
+                    </h2>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error led-pulse"></div>
+<span class="font-mono-data text-[10px] text-error font-bold">DISCONNECTED</span>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<!-- Wallet Options -->
+<button class="w-full group flex items-center justify-between p-4 border border-outline hover:border-primary bg-surface-container-low transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 border border-outline-variant bg-surface flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">electric_bolt</span>
+</div>
+<div class="text-left">
+<p class="font-mono-label text-mono-label font-bold">METAMASK</p>
+<p class="font-mono-data text-[11px] text-on-surface-variant">BROWSER EXTENSION DETECTED</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary">chevron_right</span>
+</button>
+<button class="w-full group flex items-center justify-between p-4 border border-outline hover:border-primary bg-surface-container-low transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 border border-outline-variant bg-surface flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">qr_code_2</span>
+</div>
+<div class="text-left">
+<p class="font-mono-label text-mono-label font-bold">WALLETCONNECT</p>
+<p class="font-mono-data text-[11px] text-on-surface-variant">MOBILE_SYNC PROTOCOL_V2</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary">chevron_right</span>
+</button>
+<button class="w-full group flex items-center justify-between p-4 border border-outline hover:border-primary bg-surface-container-low transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 border border-outline-variant bg-surface flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">terminal</span>
+</div>
+<div class="text-left">
+<p class="font-mono-label text-mono-label font-bold">GEN_BROWSER</p>
+<p class="font-mono-data text-[11px] text-on-surface-variant">NATIVE HARDWARE_INTERFACE</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary">chevron_right</span>
+</button>
+</div>
+<div class="p-4 bg-surface-container-low border-t border-outline flex justify-between items-center">
+<span class="font-mono-data text-[10px] text-on-surface-variant uppercase tracking-widest">Awaiting user authorization...</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] animate-spin">refresh</span>
+</div>
+</div>
+<!-- Right Side: Error Overlay -->
+<div class="relative flex flex-col gap-4">
+<div class="bg-primary p-6 border border-primary flex flex-col gap-4 machine-border relative">
+<div class="absolute -top-1 -left-1 w-2 h-2 bg-on-primary"></div>
+<div class="absolute -top-1 -right-1 w-2 h-2 bg-on-primary"></div>
+<div class="flex items-start gap-4">
+<div class="p-2 border-2 border-on-primary">
+<span class="material-symbols-outlined text-on-primary text-[32px] font-bold">warning</span>
+</div>
+<div>
+<h1 class="font-mono-label text-headline-md font-bold text-on-primary leading-tight">WRONG_NETWORK_DETECTED</h1>
+<p class="font-mono-data text-mono-label text-on-primary-container opacity-90 mt-1">
+                                CURRENT_CHAIN: ETHEREUM_MAINNET (ID: 1)<br/>
+                                REQUIRED_CHAIN: GENLAYER_TESTNET (ID: 1337)
+                            </p>
+</div>
+</div>
+<div class="h-px bg-on-primary opacity-20 my-2"></div>
+<p class="font-body-md text-on-primary opacity-80 leading-relaxed">
+                        The requested action cannot be performed on the current network. Please update your wallet connection to synchronize with the GenLayer protocol environment.
+                    </p>
+<button class="w-full bg-on-primary text-primary font-mono-label text-body-lg font-bold py-4 hover:bg-primary-fixed transition-colors flex items-center justify-center gap-3">
+                        SWITCH TO GENLAYER TESTNET
+                        <span class="material-symbols-outlined">sync_alt</span>
+</button>
+</div>
+<!-- Secondary Technical Info Card -->
+<div class="bg-surface-container-high border border-outline p-4">
+<p class="font-mono-data text-[10px] text-on-surface-variant flex items-center gap-2 mb-3">
+<span class="w-2 h-2 bg-outline-variant"></span>
+                        NETWORK_DIAGNOSTICS_LOG
+                    </p>
+<div class="space-y-1 font-mono-data text-[11px] text-on-surface-variant uppercase">
+<div class="flex justify-between border-b border-outline-variant py-1">
+<span>RPC_ENDPOINT</span>
+<span class="text-on-surface">https://testnet.genlayer.io</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant py-1">
+<span>LATENCY_CHECK</span>
+<span class="text-on-surface">24ms // STABLE</span>
+</div>
+<div class="flex justify-between py-1">
+<span>PROTOCOL_VERSION</span>
+<span class="text-on-surface">v1.0.4-BETA</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 left-0 w-full py-4 px-margin-desktop flex justify-between items-center bg-surface-dim border-t border-outline z-50">
+<div class="flex items-center gap-6">
+<span class="font-mono-label text-mono-label text-primary">PROVIDER COURT</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">©2024 PROVIDER COURT // PROTOCOL_V1.0.4</span>
+</div>
+<div class="flex gap-6">
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[LEGAL]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[STATUS: OK]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[API_DOCS]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[NETWORK_LATENCY: 24MS]</a>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for wallet buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'translateY(1px)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'translateY(0px)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0px)';
+            });
+        });
+    </script>
+</body></html>

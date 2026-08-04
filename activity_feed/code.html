@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for technical feel */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #916f65; }
+        
+        .led-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px #326854); }
+            50% { opacity: 0.5; filter: drop-shadow(0 0 1px #326854); }
+        }
+
+        .grid-bg {
+            background-image: radial-gradient(#e6beb2 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a4c9ff",
+                        "outline": "#916f65",
+                        "on-surface": "#281712",
+                        "surface-container-high": "#ffe2da",
+                        "secondary-container": "#b3ecd2",
+                        "primary-container": "#d34000",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#17503d",
+                        "on-surface-variant": "#5c4037",
+                        "on-primary-container": "#fffbff",
+                        "secondary-fixed": "#b6efd5",
+                        "on-secondary-container": "#376c58",
+                        "tertiary-fixed": "#d4e3ff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#e6beb2",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#ad3300",
+                        "inverse-primary": "#ffb59e",
+                        "tertiary": "#005da8",
+                        "on-secondary-fixed": "#002116",
+                        "primary-fixed": "#ffdbd0",
+                        "on-primary-fixed": "#3a0b00",
+                        "surface-bright": "#fff8f6",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#9ad2b9",
+                        "on-primary-fixed-variant": "#842500",
+                        "surface-container-low": "#fff1ed",
+                        "surface": "#fff8f6",
+                        "tertiary-container": "#0076d3",
+                        "on-tertiary-fixed-variant": "#004884",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#f2d3ca",
+                        "surface-container": "#ffe9e3",
+                        "primary-fixed-dim": "#ffb59e",
+                        "secondary": "#326854",
+                        "on-tertiary-fixed": "#001c39",
+                        "inverse-on-surface": "#ffede8",
+                        "surface-container-highest": "#fbdcd3",
+                        "surface-variant": "#fbdcd3",
+                        "on-background": "#281712",
+                        "primary": "#a93100",
+                        "inverse-surface": "#3f2c26",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-primary": "#ffffff",
+                        "background": "#fff8f6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "unit": "4px",
+                        "technical-gap": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "mono-label": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed grid-bg min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-outline">
+<div class="flex items-center gap-technical-gap">
+<span class="font-headline-md text-headline-md tracking-tighter text-primary">PROVIDER COURT</span>
+<div class="hidden md:flex ml-8 gap-6 h-full items-center">
+<a class="text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-high transition-colors px-2 py-1" href="#">[01] BROWSE JOBS</a>
+<a class="text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-high transition-colors px-2 py-1" href="#">[02] PROVIDERS</a>
+<a class="text-primary border-b-2 border-primary font-bold font-mono-label text-mono-label px-2 py-1" href="#"> [03] ACTIVITY</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-high px-3 py-1">GOVERNANCE</button>
+<button class="bg-primary text-on-primary font-mono-label text-mono-label px-4 py-2 hover:opacity-80 transition-opacity">CONNECT WALLET</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col z-40 bg-surface-container-low border-r border-outline hidden md:flex">
+<div class="p-6 border-b border-outline-variant">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 bg-surface-container-highest border border-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<div class="font-mono-label text-mono-label text-primary">OPERATOR_082</div>
+<div class="text-[10px] font-mono-data text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full led-pulse"></span>
+                        STATUS: VERIFIED
+                    </div>
+</div>
+</div>
+</div>
+<div class="flex-1 py-4">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span> [DASHBOARD]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">add_box</span> [POST JOB]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">package_2</span> [DELIVERIES]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">query_stats</span> [ANALYTICS]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant font-mono-label text-mono-label hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span> [ESCROW]
+            </a>
+</div>
+<div class="p-6 border-t border-outline-variant">
+<button class="w-full border border-primary text-primary py-2 font-mono-label text-mono-label hover:bg-primary-fixed transition-colors mb-4">NEW DISPUTE</button>
+<div class="space-y-2">
+<a class="flex items-center gap-3 text-on-surface-variant font-mono-label text-mono-label hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span> SETTINGS
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant font-mono-label text-mono-label hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span> LOGOUT
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="md:ml-64 mt-16 p-margin-desktop min-h-[calc(100vh-128px)]">
+<div class="max-w-6xl mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-end mb-8 border-b-2 border-outline pb-4">
+<div class="flex flex-col gap-2">
+<span class="font-mono-label text-mono-label text-primary">[SYSTEM_LOG_ACCESS]</span>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase">Global Activity Ledger</h1>
+</div>
+<div class="flex items-center gap-6 mt-4 md:mt-0">
+<div class="text-right">
+<div class="font-mono-data text-mono-data text-on-surface-variant">NETWORK_UPTIME</div>
+<div class="font-mono-label text-mono-label text-secondary font-bold">99.9982%</div>
+</div>
+<div class="text-right">
+<div class="font-mono-data text-mono-data text-on-surface-variant">BLOCK_HEIGHT</div>
+<div class="font-mono-label text-mono-label text-on-surface font-bold">#2,841,093</div>
+</div>
+</div>
+</div>
+<!-- Feed Table -->
+<div class="border border-outline bg-surface-container-lowest overflow-hidden">
+<!-- Ledger Header -->
+<div class="grid grid-cols-12 gap-gutter px-6 py-4 bg-surface-container-high border-b border-outline font-mono-label text-mono-label">
+<div class="col-span-2">TIMESTAMP</div>
+<div class="col-span-3">JOB_ID_TAG</div>
+<div class="col-span-2">MODALITY</div>
+<div class="col-span-3">PROTOCOL_OUTCOME</div>
+<div class="col-span-2 text-right">REL_FRAC</div>
+</div>
+<!-- Feed Entries -->
+<div class="divide-y divide-outline-variant">
+<!-- Entry 01 -->
+<div class="grid grid-cols-12 gap-gutter px-6 py-5 items-center hover:bg-surface-bright transition-colors group">
+<div class="col-span-2 font-mono-data text-mono-data text-on-surface-variant">
+                            14:28:02.11
+                        </div>
+<div class="col-span-3 flex items-center gap-2">
+<span class="font-mono-label text-mono-label bg-surface-container text-primary px-2 border border-outline-variant">JOB_X882</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div class="col-span-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="storage">storage</span>
+<span class="font-mono-label text-mono-label uppercase">Storage</span>
+</div>
+<div class="col-span-3">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container font-mono-label text-mono-label border border-secondary">PARTIAL_RELEASE</span>
+</div>
+<div class="col-span-2 text-right font-mono-data text-headline-md leading-none text-primary">
+                            0.82
+                        </div>
+</div>
+<!-- Entry 02 -->
+<div class="grid grid-cols-12 gap-gutter px-6 py-5 items-center hover:bg-surface-bright transition-colors group">
+<div class="col-span-2 font-mono-data text-mono-data text-on-surface-variant">
+                            14:27:55.89
+                        </div>
+<div class="col-span-3 flex items-center gap-2">
+<span class="font-mono-label text-mono-label bg-surface-container text-primary px-2 border border-outline-variant">JOB_A019</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div class="col-span-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="memory">memory</span>
+<span class="font-mono-label text-mono-label uppercase">Compute</span>
+</div>
+<div class="col-span-3">
+<span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-mono-label text-mono-label border border-primary">FULL_ESCROW_RELEASE</span>
+</div>
+<div class="col-span-2 text-right font-mono-data text-headline-md leading-none text-primary">
+                            1.00
+                        </div>
+</div>
+<!-- Entry 03 -->
+<div class="grid grid-cols-12 gap-gutter px-6 py-5 items-center hover:bg-surface-bright transition-colors group">
+<div class="col-span-2 font-mono-data text-mono-data text-on-surface-variant">
+                            14:25:12.44
+                        </div>
+<div class="col-span-3 flex items-center gap-2">
+<span class="font-mono-label text-mono-label bg-surface-container text-primary px-2 border border-outline-variant">JOB_C440</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div class="col-span-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="lan">lan</span>
+<span class="font-mono-label text-mono-label uppercase">Network</span>
+</div>
+<div class="col-span-3">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-mono-label text-mono-label border border-outline">NULL_SETTLEMENT</span>
+</div>
+<div class="col-span-2 text-right font-mono-data text-headline-md leading-none text-primary">
+                            0.00
+                        </div>
+</div>
+<!-- Entry 04 -->
+<div class="grid grid-cols-12 gap-gutter px-6 py-5 items-center hover:bg-surface-bright transition-colors group">
+<div class="col-span-2 font-mono-data text-mono-data text-on-surface-variant">
+                            14:22:01.03
+                        </div>
+<div class="col-span-3 flex items-center gap-2">
+<span class="font-mono-label text-mono-label bg-surface-container text-primary px-2 border border-outline-variant">JOB_Z991</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div class="col-span-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="security">security</span>
+<span class="font-mono-label text-mono-label uppercase">Audit</span>
+</div>
+<div class="col-span-3">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container font-mono-label text-mono-label border border-secondary">PARTIAL_RELEASE</span>
+</div>
+<div class="col-span-2 text-right font-mono-data text-headline-md leading-none text-primary">
+                            0.45
+                        </div>
+</div>
+</div>
+</div>
+<!-- Protocol Bottom Stats -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="border border-outline p-6 bg-surface-container-low flex flex-col gap-4">
+<div class="font-mono-label text-mono-label text-primary">[01] SYNC_STATUS</div>
+<div class="h-32 flex items-end gap-1">
+<div class="w-full bg-secondary h-[40%]"></div>
+<div class="w-full bg-secondary h-[60%]"></div>
+<div class="w-full bg-secondary h-[55%]"></div>
+<div class="w-full bg-secondary h-[80%]"></div>
+<div class="w-full bg-secondary h-[90%]"></div>
+<div class="w-full bg-secondary h-[75%]"></div>
+<div class="w-full bg-primary h-[95%]"></div>
+</div>
+<div class="flex justify-between font-mono-data text-mono-data text-on-surface-variant">
+<span>T-60M</span>
+<span>LIVE</span>
+</div>
+</div>
+<div class="border border-outline p-6 bg-surface-container-low relative group overflow-hidden">
+<div class="font-mono-label text-mono-label text-primary">[02] PROTOCOL_ENFORCEMENT</div>
+<div class="mt-6 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="font-mono-data text-mono-data text-on-surface-variant">MODERATION_ACTIVE</span>
+<span class="text-secondary material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-mono-data text-mono-data text-on-surface-variant">RELAY_ENCRYPTION</span>
+<span class="text-secondary material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-mono-data text-mono-data text-on-surface-variant">DISPUTE_TIMEOUT</span>
+<span class="text-primary material-symbols-outlined">timer</span>
+</div>
+</div>
+<div class="absolute -bottom-4 -right-4 opacity-5 rotate-12">
+<span class="material-symbols-outlined text-[120px]">shield</span>
+</div>
+</div>
+<div class="border border-outline p-6 bg-surface-container-low">
+<div class="font-mono-label text-mono-label text-primary">[03] NETWORK_LATENCY</div>
+<div class="mt-4 text-center">
+<span class="font-display-lg text-headline-lg font-mono-data text-primary">24ms</span>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-2 uppercase">Region: Global_Optimized</p>
+<div class="mt-4 p-2 border border-dashed border-outline-variant">
+<span class="font-mono-data text-[10px] text-on-surface-variant">LOAD: 0.124 / NODE_COUNT: 14,202</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-4 px-margin-desktop flex justify-between items-center bg-surface-dim border-t border-outline">
+<div class="font-mono-label text-mono-label text-primary">©2024 PROVIDER COURT // PROTOCOL_V1.0.4</div>
+<div class="flex gap-8">
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[LEGAL]</a>
+<a class="font-mono-data text-mono-data text-secondary flex items-center gap-1 hover:text-primary transition-colors" href="#">
+<span class="w-2 h-2 bg-secondary rounded-full"></span> [STATUS: OK]
+            </a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[API_DOCS]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[NETWORK_LATENCY: 24MS]</a>
+</div>
+</footer>
+<!-- Technical Decoration Elements -->
+<div class="fixed bottom-24 right-12 z-0 opacity-20 pointer-events-none select-none">
+<div class="text-[140px] font-mono-data text-outline leading-none font-bold">V_1.04</div>
+</div>
+<script>
+        // Simulate live feed updates
+        function simulateFeed() {
+            const feedContainer = document.querySelector('.divide-y');
+            const jobPrefixes = ['X', 'A', 'C', 'Z', 'M', 'B'];
+            const modalities = [
+                { icon: 'storage', label: 'Storage' },
+                { icon: 'memory', label: 'Compute' },
+                { icon: 'lan', label: 'Network' },
+                { icon: 'security', label: 'Audit' }
+            ];
+            const outcomes = [
+                { label: 'PARTIAL_RELEASE', class: 'bg-secondary-container text-on-secondary-container border-secondary' },
+                { label: 'FULL_ESCROW_RELEASE', class: 'bg-primary-fixed text-on-primary-fixed-variant border-primary' },
+                { label: 'NULL_SETTLEMENT', class: 'bg-surface-container-highest text-on-surface-variant border-outline' }
+            ];
+
+            setInterval(() => {
+                const now = new Date();
+                const timestamp = `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}.${Math.floor(Math.random() * 99)}`;
+                const jobID = `JOB_${jobPrefixes[Math.floor(Math.random() * jobPrefixes.length)]}${Math.floor(Math.random() * 900) + 100}`;
+                const modality = modalities[Math.floor(Math.random() * modalities.length)];
+                const outcome = outcomes[Math.floor(Math.random() * outcomes.length)];
+                const frac = (Math.random()).toFixed(2);
+
+                const newRow = document.createElement('div');
+                newRow.className = 'grid grid-cols-12 gap-gutter px-6 py-5 items-center hover:bg-surface-bright transition-colors group opacity-0 translate-y-4';
+                newRow.innerHTML = `
+                    <div class="col-span-2 font-mono-data text-mono-data text-on-surface-variant">${timestamp}</div>
+                    <div class="col-span-3 flex items-center gap-2">
+                        <span class="font-mono-label text-mono-label bg-surface-container text-primary px-2 border border-outline-variant">${jobID}</span>
+                        <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">terminal</span>
+                    </div>
+                    <div class="col-span-2 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-outline">${modality.icon}</span>
+                        <span class="font-mono-label text-mono-label uppercase">${modality.label}</span>
+                    </div>
+                    <div class="col-span-3">
+                        <span class="px-2 py-0.5 ${outcome.class} font-mono-label text-mono-label border">${outcome.label}</span>
+                    </div>
+                    <div class="col-span-2 text-right font-mono-data text-headline-md leading-none text-primary">${frac}</div>
+                `;
+
+                feedContainer.prepend(newRow);
+                
+                // Keep only top 10 items
+                if (feedContainer.children.length > 10) {
+                    feedContainer.lastElementChild.remove();
+                }
+
+                // Trigger animation
+                setTimeout(() => {
+                    newRow.classList.remove('opacity-0', 'translate-y-4');
+                    newRow.classList.add('transition-all', 'duration-500');
+                }, 50);
+            }, 6000); // New event every 6 seconds
+        }
+
+        document.addEventListener('DOMContentLoaded', simulateFeed);
+    </script>
+</body></html>

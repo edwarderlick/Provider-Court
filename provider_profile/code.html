@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT // OPERATOR_082</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .technical-grid-bg {
+      background-image: 
+        linear-gradient(to right, #e6beb2 1px, transparent 1px),
+        linear-gradient(to bottom, #e6beb2 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .scanline-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(169, 49, 0, 0.03) 50%,
+        rgba(255, 255, 255, 0) 50%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+    .hardware-border {
+      box-shadow: inset 0 0 0 1px #916f65;
+    }
+    .led-glow-green {
+      box-shadow: 0 0 8px #326854;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed-dim": "#a4c9ff",
+            "outline": "#916f65",
+            "on-surface": "#281712",
+            "surface-container-high": "#ffe2da",
+            "secondary-container": "#b3ecd2",
+            "primary-container": "#d34000",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed-variant": "#17503d",
+            "on-surface-variant": "#5c4037",
+            "on-primary-container": "#fffbff",
+            "secondary-fixed": "#b6efd5",
+            "on-secondary-container": "#376c58",
+            "tertiary-fixed": "#d4e3ff",
+            "error-container": "#ffdad6",
+            "outline-variant": "#e6beb2",
+            "on-tertiary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#ad3300",
+            "inverse-primary": "#ffb59e",
+            "tertiary": "#005da8",
+            "on-secondary-fixed": "#002116",
+            "primary-fixed": "#ffdbd0",
+            "on-primary-fixed": "#3a0b00",
+            "surface-bright": "#fff8f6",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#9ad2b9",
+            "on-primary-fixed-variant": "#842500",
+            "surface-container-low": "#fff1ed",
+            "surface": "#fff8f6",
+            "tertiary-container": "#0076d3",
+            "on-tertiary-fixed-variant": "#004884",
+            "on-secondary": "#ffffff",
+            "error": "#ba1a1a",
+            "surface-dim": "#f2d3ca",
+            "surface-container": "#ffe9e3",
+            "primary-fixed-dim": "#ffb59e",
+            "secondary": "#326854",
+            "on-tertiary-fixed": "#001c39",
+            "inverse-on-surface": "#ffede8",
+            "surface-container-highest": "#fbdcd3",
+            "surface-variant": "#fbdcd3",
+            "on-background": "#281712",
+            "primary": "#a93100",
+            "inverse-surface": "#3f2c26",
+            "on-tertiary-container": "#fdfcff",
+            "on-primary": "#ffffff",
+            "background": "#fff8f6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0px",
+            "lg": "0px",
+            "xl": "0px",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "margin-desktop": "40px",
+            "unit": "4px",
+            "technical-gap": "8px",
+            "gutter": "16px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "mono-data": ["JetBrains Mono"],
+            "headline-md": ["Inter"],
+            "mono-label": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "display-lg": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+            "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+            "mono-data": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+            "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "mono-label": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+            "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden technical-grid-bg min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-outline">
+<div class="flex items-center gap-technical-gap">
+<span class="font-headline-md text-headline-md tracking-tighter text-primary">PROVIDER COURT</span>
+<div class="h-6 w-[1px] bg-outline mx-4 hidden md:block"></div>
+<div class="hidden md:flex gap-6">
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1" href="#">[01] BROWSE JOBS</a>
+<a class="font-mono-label text-mono-label text-primary border-b-2 border-primary font-bold px-2 py-1" href="#">[02] PROVIDERS</a>
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1" href="#">[03] ACTIVITY</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-mono-label text-mono-label px-4 py-2 border border-outline hover:bg-surface-container-high transition-colors">GOVERNANCE</button>
+<button class="font-mono-label text-mono-label px-4 py-2 bg-primary text-on-primary hover:opacity-80 transition-opacity">CONNECT WALLET</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col z-40 bg-surface-container-low border-r border-outline hidden lg:flex">
+<div class="p-6 border-b border-outline">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 border border-outline bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover grayscale" data-alt="A macro photograph of a vintage industrial hardware interface with weathered metal surfaces and a small monochrome digital display. The lighting is harsh and direct, highlighting technical textures and precision-machined components in a neutral palette of silver, grey, and safety orange accents. The overall mood is cold, professional, and strictly functional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACYRSp4e23W7rkeU_ZMt7likp7KtYbqWTm-gnXCTAXD9Rkq8UFUYg8HQvBGqaX1MjghBdF-T5BIcpRDFeqzUYHyX-wBayy6-VzhWBe7vXlo1a7t1KfFdGFF3a6Gk4_IWVLcqnk_yqs6gKMhEzPXIQVi2wafNnQxkm9UhNrpOP6UjYevCQUGYge_d62WoPGAv645fEL_vP-6sqw03lvsnM8uQpBT_pWGsi0Uq8z5TKQF3OwattDolKPMJvMb1qmgLoJgKbAmBN_1Mp5"/>
+</div>
+<div>
+<p class="font-mono-label text-mono-label text-primary font-bold">OPERATOR_082</p>
+<p class="text-[10px] font-mono-data text-secondary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary led-glow-green"></span> STATUS: VERIFIED
+          </p>
+</div>
+</div>
+</div>
+<nav class="flex-1 py-4">
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="dashboard">dashboard</span> [DASHBOARD]
+      </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_box">add_box</span> [POST JOB]
+      </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="package_2">package_2</span> [DELIVERIES]
+      </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="query_stats">query_stats</span> [ANALYTICS]
+      </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="account_balance_wallet">account_balance_wallet</span> [ESCROW]
+      </a>
+<div class="px-6 mt-6">
+<button class="w-full py-3 bg-primary text-on-primary font-mono-label text-mono-label border border-outline">NEW DISPUTE</button>
+</div>
+</nav>
+<div class="p-4 border-t border-outline flex flex-col gap-2">
+<a class="flex items-center gap-3 px-2 py-1 font-mono-label text-mono-label text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="settings">settings</span> SETTINGS
+      </a>
+<a class="flex items-center gap-3 px-2 py-1 font-mono-label text-mono-label text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="logout">logout</span> LOGOUT
+      </a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="lg:ml-64 pt-16 min-h-[calc(100vh-64px)] pb-12">
+<div class="max-w-6xl mx-auto p-margin-mobile md:p-margin-desktop">
+<!-- Profile Header -->
+<header class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-outline">
+<div>
+<span class="font-mono-label text-mono-label text-on-surface-variant opacity-60">[PROVIDER_IDENTITY_CARD]</span>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg uppercase tracking-tight text-on-surface mb-2">EP-SAMPLER_01</h1>
+<div class="flex gap-4">
+<span class="font-mono-label text-mono-label bg-surface-container-high px-2 py-0.5 border border-outline">ID: 0x82A...F92B</span>
+<span class="font-mono-label text-mono-label text-secondary flex items-center gap-2 border border-secondary px-2 py-0.5">
+<span class="w-2 h-2 rounded-full bg-secondary led-glow-green"></span> ACTIVE_ON_NETWORK
+              </span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-mono-label text-mono-label text-on-surface-variant">[PROTOCOL_VERSION: 1.0.4]</span>
+<div class="flex gap-2">
+<button class="bg-primary text-on-primary font-mono-label text-mono-label px-6 py-3 border border-on-surface">INITIATE_HIRE</button>
+<button class="bg-surface border border-on-surface font-mono-label text-mono-label px-6 py-3">SEND_MESSAGE</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Bento Grid Stats Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Raw Performance Data -->
+<div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Job Count -->
+<div class="bg-surface border border-outline p-6 flex flex-col justify-between">
+<div>
+<p class="font-mono-label text-mono-label text-on-surface-variant mb-4">[01] JOBS_COMPLETED</p>
+<p class="font-display-lg text-headline-lg text-on-surface leading-none">42</p>
+</div>
+<div class="mt-8 h-2 w-full bg-surface-container-highest border border-outline overflow-hidden">
+<div class="h-full bg-primary" style="width: 78%;"></div>
+</div>
+</div>
+<!-- Release Rate -->
+<div class="bg-surface border border-outline p-6 flex flex-col justify-between">
+<div>
+<p class="font-mono-label text-mono-label text-on-surface-variant mb-4">[02] FULL_RELEASE_RATE</p>
+<p class="font-display-lg text-headline-lg text-secondary leading-none">92%</p>
+</div>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-4">RELIABILITY_THRESHOLD: HIGH</p>
+</div>
+<!-- Average Release Fraction -->
+<div class="bg-surface border border-outline p-6 flex flex-col justify-between">
+<div>
+<p class="font-mono-label text-mono-label text-on-surface-variant mb-4">[03] AVG_RELEASE_FRACTION</p>
+<p class="font-display-lg text-headline-lg text-on-surface leading-none">0.88</p>
+</div>
+<div class="mt-4 flex gap-1">
+<div class="w-full h-1 bg-secondary"></div>
+<div class="w-full h-1 bg-secondary"></div>
+<div class="w-full h-1 bg-secondary"></div>
+<div class="w-full h-1 bg-secondary"></div>
+<div class="w-full h-1 bg-surface-container-highest"></div>
+</div>
+</div>
+<!-- Active Capacity -->
+<div class="bg-surface border border-outline p-6 flex flex-col justify-between">
+<div>
+<p class="font-mono-label text-mono-label text-on-surface-variant mb-4">[04] ACTIVE_JOBS</p>
+<p class="font-display-lg text-headline-lg text-primary leading-none">02</p>
+</div>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-4">MAX_CAPACITY: 05</p>
+</div>
+</div>
+<!-- System Modalities & Technical Specs -->
+<div class="md:col-span-4 border border-outline bg-surface-container p-6">
+<p class="font-mono-label text-mono-label text-on-surface-variant border-b border-outline pb-4 mb-6 uppercase">Operating_Modalities</p>
+<div class="space-y-6">
+<!-- Modality: Audio -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 border border-outline flex items-center justify-center bg-surface">
+<span class="material-symbols-outlined text-primary" data-icon="graphic_eq">graphic_eq</span>
+</div>
+<div>
+<p class="font-mono-label text-mono-label font-bold">AUDIO_ENGINEERING</p>
+<p class="font-mono-data text-mono-data text-on-surface-variant">MASTERING / STEMS / SYNTH</p>
+</div>
+</div>
+<!-- Modality: Text -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 border border-outline flex items-center justify-center bg-surface">
+<span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
+</div>
+<div>
+<p class="font-mono-label text-mono-label font-bold">TEXT_MANIPULATION</p>
+<p class="font-mono-data text-mono-data text-on-surface-variant">FORMATTING / REGEX / PARSING</p>
+</div>
+</div>
+<div class="pt-6 border-t border-outline mt-8">
+<p class="font-mono-data text-mono-data text-on-surface-variant mb-4 uppercase">Node_Hardware_Ref</p>
+<div class="space-y-2">
+<div class="flex justify-between font-mono-data text-mono-data">
+<span class="text-on-surface-variant">Uptime_Metric</span>
+<span class="text-secondary">99.98%</span>
+</div>
+<div class="flex justify-between font-mono-data text-mono-data">
+<span class="text-on-surface-variant">Latency_AVG</span>
+<span class="text-on-surface">24ms</span>
+</div>
+<div class="flex justify-between font-mono-data text-mono-data">
+<span class="text-on-surface-variant">Region_Zone</span>
+<span class="text-on-surface">EU-WEST-01</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Historical Ledger (Simplified Jobs List) -->
+<section class="mt-12">
+<h3 class="font-mono-label text-mono-label mb-6 flex items-center gap-2">
+<span class="w-3 h-[1px] bg-primary"></span> [TRANSACTION_HISTORY_LEDGER]
+        </h3>
+<div class="border border-outline bg-surface overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-b border-outline">
+<th class="p-4 font-mono-label text-mono-label text-on-surface-variant">#ID</th>
+<th class="p-4 font-mono-label text-mono-label text-on-surface-variant">MODALITY</th>
+<th class="p-4 font-mono-label text-mono-label text-on-surface-variant">STATUS</th>
+<th class="p-4 font-mono-label text-mono-label text-on-surface-variant">ESCROW_VAL</th>
+<th class="p-4 font-mono-label text-mono-label text-on-surface-variant text-right">SETTLEMENT</th>
+</tr>
+</thead>
+<tbody class="font-mono-data text-mono-data divide-y divide-outline">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4">TXN-4022</td>
+<td class="p-4">AUDIO</td>
+<td class="p-4"><span class="text-secondary font-bold">RELEASED</span></td>
+<td class="p-4">1,400.00 USDC</td>
+<td class="p-4 text-right">100%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4">TXN-3981</td>
+<td class="p-4">TEXT</td>
+<td class="p-4"><span class="text-secondary font-bold">RELEASED</span></td>
+<td class="p-4">420.00 USDC</td>
+<td class="p-4 text-right">100%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4">TXN-3950</td>
+<td class="p-4">AUDIO</td>
+<td class="p-4"><span class="text-primary font-bold">FRACTIONAL</span></td>
+<td class="p-4">2,100.00 USDC</td>
+<td class="p-4 text-right">0.85%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4">TXN-3822</td>
+<td class="p-4">AUDIO</td>
+<td class="p-4"><span class="text-secondary font-bold">RELEASED</span></td>
+<td class="p-4">890.00 USDC</td>
+<td class="p-4 text-right">100%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-4 px-margin-desktop flex justify-between items-center bg-surface-dim border-t border-outline relative z-50">
+<div class="flex items-center gap-6">
+<span class="font-mono-label text-mono-label text-primary">PROVIDER COURT</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">©2024 PROVIDER COURT // PROTOCOL_V1.0.4</span>
+</div>
+<div class="hidden md:flex gap-6">
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">[LEGAL]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors uppercase text-secondary" href="#">[STATUS: OK]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">[API_DOCS]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">[NETWORK_LATENCY: 24MS]</a>
+</div>
+</footer>
+<div class="fixed inset-0 scanline-overlay z-[100] pointer-events-none opacity-20"></div>
+<script>
+    // Micro-interaction for hover states
+    document.querySelectorAll('button, a').forEach(el => {
+      el.addEventListener('mousedown', () => {
+        el.style.transform = 'scale(0.98)';
+      });
+      el.addEventListener('mouseup', () => {
+        el.style.transform = 'scale(1)';
+      });
+    });
+
+    // Theme logic simple toggle (if needed)
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+  </script>
+</body></html>

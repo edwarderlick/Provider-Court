@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT // OPERATOR DASHBOARD</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#005da8",
+                    "secondary-container": "#b3ecd2",
+                    "outline": "#916f65",
+                    "on-surface": "#281712",
+                    "inverse-surface": "#3f2c26",
+                    "surface-container-highest": "#fbdcd3",
+                    "secondary-fixed-dim": "#9ad2b9",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#001c39",
+                    "surface-container-low": "#fff1ed",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#ffe9e3",
+                    "on-primary-container": "#fffbff",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#842500",
+                    "on-background": "#281712",
+                    "tertiary-fixed": "#d4e3ff",
+                    "inverse-on-surface": "#ffede8",
+                    "surface-tint": "#ad3300",
+                    "on-tertiary-fixed-variant": "#004884",
+                    "primary-container": "#d34000",
+                    "primary-fixed": "#ffdbd0",
+                    "surface-dim": "#f2d3ca",
+                    "on-surface-variant": "#5c4037",
+                    "secondary-fixed": "#b6efd5",
+                    "outline-variant": "#e6beb2",
+                    "on-secondary-container": "#376c58",
+                    "tertiary-fixed-dim": "#a4c9ff",
+                    "inverse-primary": "#ffb59e",
+                    "on-tertiary-container": "#fdfcff",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#fbdcd3",
+                    "tertiary-container": "#0076d3",
+                    "surface-container-high": "#ffe2da",
+                    "on-secondary-fixed": "#002116",
+                    "surface": "#fff8f6",
+                    "primary-fixed-dim": "#ffb59e",
+                    "surface-bright": "#fff8f6",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#3a0b00",
+                    "primary": "#a93100",
+                    "background": "#fff8f6",
+                    "on-secondary-fixed-variant": "#17503d",
+                    "secondary": "#326854"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "unit": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "technical-gap": "8px"
+            },
+            "fontFamily": {
+                    "mono-data": ["JetBrains Mono"],
+                    "mono-label": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "mono-data": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "mono-label": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "display-lg": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .brutalist-border { border: 1px solid #916f65; }
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: radial-gradient(circle, #e6beb2 1px, transparent 1px);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fff1ed; }
+        ::-webkit-scrollbar-thumb { background: #916f65; border-radius: 0px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-outline">
+<div class="flex items-center gap-technical-gap">
+<span class="font-headline-md text-headline-md tracking-tighter text-primary">PROVIDER COURT</span>
+<span class="text-mono-data text-on-surface-variant opacity-50 px-2 border border-outline-variant">V1.0.4</span>
+</div>
+<nav class="hidden md:flex items-center gap-8 h-full">
+<a class="h-full flex items-center px-4 text-on-surface-variant hover:bg-surface-container-high transition-colors font-mono-label text-mono-label" href="#">[01] BROWSE JOBS</a>
+<a class="h-full flex items-center px-4 text-on-surface-variant hover:bg-surface-container-high transition-colors font-mono-label text-mono-label" href="#">[02] PROVIDERS</a>
+<a class="h-full flex items-center px-4 text-primary border-b-2 border-primary font-bold font-mono-label text-mono-label transition-opacity active:opacity-80" href="#">[03] ACTIVITY</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="px-4 py-2 border border-outline font-mono-label text-mono-label hover:bg-surface-container-high transition-colors">GOVERNANCE</button>
+<button class="px-4 py-2 bg-primary text-on-primary font-mono-label text-mono-label font-bold hover:bg-primary-container transition-all active:opacity-80">CONNECT WALLET</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col z-40 bg-surface-container-low border-r border-outline">
+<div class="p-6 border-b border-outline-variant flex items-center gap-4">
+<div class="w-10 h-10 bg-primary-fixed border border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro close-up of a high-tech computer chip with glowing orange circuitry traces against a brushed aluminum background. The lighting is crisp and surgical, emphasizing the industrial synth aesthetic. This hardware profile avatar represents high performance and security in a minimalist, light-mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtUX68QbRJYMhhtf5C-tcu_LH96z4E2ki12JdZ7xFbPnA6uuimAvqX50IGERFwQ5-x7csbeXlHVzwQSjdh0R0LVbJnCRdNz_QzN1ozxsulVCt6zYFVse1xyDKuI1Q87JBJhrygNcj4T_pZaGJqqeZ_ObMG38p6riN-EmIFjXpl6StKYI8Gar_0JS6PSdKvK7xc1oGFbks6s4GWxa7jVaz1p09uX4A63rHAnCOuNxz6BEjjBGZXIt_gBOvB-yBhjy_b11lk748Lm-C9"/>
+</div>
+<div>
+<p class="font-mono-label text-mono-label text-primary">OPERATOR_082</p>
+<p class="text-mono-data text-[10px] text-on-secondary-fixed-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> STATUS: VERIFIED
+                </p>
+</div>
+</div>
+<nav class="flex-1 py-4 overflow-y-auto">
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-mono-label text-mono-label">[DASHBOARD]</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="add_box">add_box</span>
+<span class="font-mono-label text-mono-label">[POST JOB]</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 bg-primary text-on-primary border-l-4 border-on-primary transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="package_2">package_2</span>
+<span class="font-mono-label text-mono-label">[DELIVERIES]</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="query_stats">query_stats</span>
+<span class="font-mono-label text-mono-label">[ANALYTICS]</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-mono-label text-mono-label">[ESCROW]</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant space-y-2">
+<button class="w-full py-2 bg-surface text-on-surface border border-outline font-mono-label text-mono-label hover:bg-surface-container-highest transition-all">
+                NEW DISPUTE
+            </button>
+<div class="pt-2 flex flex-col gap-1">
+<a class="flex items-center gap-2 text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="settings">settings</span> SETTINGS
+                </a>
+<a class="flex items-center gap-2 text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="logout">logout</span> LOGOUT
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 h-screen overflow-y-auto grid-bg">
+<div class="p-margin-desktop space-y-gutter">
+<!-- [01] Performance Summary -->
+<header class="flex justify-between items-end">
+<div class="space-y-1">
+<h1 class="font-headline-md text-headline-md text-primary uppercase">[03] DELIVERIES_HUB</h1>
+<p class="font-mono-data text-mono-data text-on-surface-variant">ACTIVE_SESSION: PROVIDER_NODE_AFX-02</p>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-end border-r border-outline pr-4">
+<span class="text-mono-data opacity-50 uppercase">Network Load</span>
+<span class="font-mono-label text-mono-label text-secondary">0.024 MS</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-mono-data opacity-50 uppercase">Block Height</span>
+<span class="font-mono-label text-mono-label">#18,492,021</span>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Summary Card 1 -->
+<div class="bg-surface border border-outline p-6 space-y-4 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant opacity-60">[ID_01]</span>
+<span class="material-symbols-outlined text-primary" data-icon="pending_actions">pending_actions</span>
+</div>
+<div>
+<p class="text-mono-data uppercase text-on-surface-variant">Jobs in Progress</p>
+<p class="font-display-lg text-headline-md md:text-[48px] leading-none text-primary">12</p>
+</div>
+<div class="w-full bg-surface-container h-1 overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-[0.03] pointer-events-none">
+<span class="material-symbols-outlined text-[120px]" data-icon="work">work</span>
+</div>
+</div>
+<!-- Summary Card 2 -->
+<div class="bg-surface border border-outline p-6 space-y-4 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant opacity-60">[ID_02]</span>
+<span class="material-symbols-outlined text-secondary" data-icon="monetization_on">monetization_on</span>
+</div>
+<div>
+<p class="text-mono-data uppercase text-on-surface-variant">Total GEN Earned</p>
+<div class="flex items-baseline gap-2">
+<p class="font-display-lg text-headline-md md:text-[48px] leading-none">84.2k</p>
+<span class="text-mono-label text-mono-label text-secondary">GEN</span>
+</div>
+</div>
+<p class="text-mono-data text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> +12.4% vs last period
+                    </p>
+</div>
+<!-- Summary Card 3 -->
+<div class="bg-surface border border-outline p-6 space-y-4 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<span class="font-mono-label text-mono-label text-on-surface-variant opacity-60">[ID_03]</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<p class="text-mono-data uppercase text-on-surface-variant">Protocol Reputation</p>
+<p class="font-display-lg text-headline-md md:text-[48px] leading-none text-tertiary">99.8%</p>
+</div>
+<div class="flex gap-1">
+<span class="w-4 h-1 bg-tertiary"></span>
+<span class="w-4 h-1 bg-tertiary"></span>
+<span class="w-4 h-1 bg-tertiary"></span>
+<span class="w-4 h-1 bg-tertiary"></span>
+<span class="w-4 h-1 bg-tertiary opacity-20"></span>
+</div>
+</div>
+</div>
+<!-- [02] Delivery Ledger -->
+<section class="bg-surface border border-outline overflow-hidden">
+<div class="px-6 py-4 border-b border-outline bg-surface-container-low flex justify-between items-center">
+<h2 class="font-mono-label text-mono-label uppercase tracking-widest text-on-surface">Live Delivery Ledger</h2>
+<div class="flex gap-2">
+<input class="bg-surface border border-outline text-mono-data px-3 py-1 focus:ring-0 focus:border-primary w-48 outline-none" placeholder="FILTER BY ID..." type="text"/>
+<button class="bg-surface border border-outline p-1 hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]" data-icon="tune">tune</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline bg-surface-container font-mono-data text-on-surface-variant text-[11px] uppercase tracking-tighter">
+<th class="px-6 py-3 font-medium">Job ID</th>
+<th class="px-6 py-3 font-medium">Network Node</th>
+<th class="px-6 py-3 font-medium">Status</th>
+<th class="px-6 py-3 font-medium">Deadline / Countdown</th>
+<th class="px-6 py-3 font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-mono-data text-mono-data">
+<!-- Row 1: Active -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-bold text-on-surface">#C-8291-TX</td>
+<td class="px-6 py-4 text-on-surface-variant opacity-70">VAL_NORTH_02</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container border border-secondary text-[10px]">ACCEPTED</span>
+</td>
+<td class="px-6 py-4 text-primary font-bold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span>
+                                        02:44:12
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right space-x-3">
+<a class="text-on-surface-variant hover:text-primary underline decoration-outline-variant" href="#">DETAILS</a>
+<button class="bg-primary text-on-primary px-3 py-1 font-bold hover:bg-primary-container transition-all text-[11px]">SUBMIT DELIVERY</button>
+</td>
+</tr>
+<!-- Row 2: Adjudicating -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-bold text-on-surface">#D-4402-RF</td>
+<td class="px-6 py-4 text-on-surface-variant opacity-70">LDN_EDGE_99</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-surface-container-highest text-primary border border-primary text-[10px]">ADJUDICATING</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant opacity-50 italic">--:--:--</td>
+<td class="px-6 py-4 text-right">
+<a class="text-on-surface-variant hover:text-primary underline decoration-outline-variant" href="#">DETAILS</a>
+</td>
+</tr>
+<!-- Row 3: Delivered -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-bold text-on-surface">#A-1109-ZZ</td>
+<td class="px-6 py-4 text-on-surface-variant opacity-70">SIN_CORE_01</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-tertiary-container text-on-tertiary-container border border-tertiary text-[10px]">DELIVERED</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant opacity-50 italic">--:--:--</td>
+<td class="px-6 py-4 text-right">
+<a class="text-on-surface-variant hover:text-primary underline decoration-outline-variant" href="#">DETAILS</a>
+</td>
+</tr>
+<!-- Row 4: Active -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-bold text-on-surface">#F-9031-LX</td>
+<td class="px-6 py-4 text-on-surface-variant opacity-70">SYD_MESH_04</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container border border-secondary text-[10px]">ACCEPTED</span>
+</td>
+<td class="px-6 py-4 text-primary font-bold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span>
+                                        14:02:59
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right space-x-3">
+<a class="text-on-surface-variant hover:text-primary underline decoration-outline-variant" href="#">DETAILS</a>
+<button class="bg-primary text-on-primary px-3 py-1 font-bold hover:bg-primary-container transition-all text-[11px]">SUBMIT DELIVERY</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-3 border-t border-outline flex justify-between items-center bg-surface-container-low">
+<p class="text-mono-data text-[10px] text-on-surface-variant">SHOWING 4 OF 128 ACTIVE_JOBS</p>
+<div class="flex gap-1">
+<button class="px-2 py-1 border border-outline bg-surface text-mono-data hover:bg-surface-container-highest">&lt;</button>
+<button class="px-2 py-1 border border-outline bg-primary text-on-primary text-mono-data">1</button>
+<button class="px-2 py-1 border border-outline bg-surface text-mono-data hover:bg-surface-container-highest">2</button>
+<button class="px-2 py-1 border border-outline bg-surface text-mono-data hover:bg-surface-container-highest">3</button>
+<button class="px-2 py-1 border border-outline bg-surface text-mono-data hover:bg-surface-container-highest">&gt;</button>
+</div>
+</div>
+</section>
+<!-- Bottom Data Grid / Visuals -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter pb-margin-desktop">
+<div class="bg-surface border border-outline p-6 space-y-4">
+<h3 class="font-mono-label text-mono-label text-primary uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="hub">hub</span> Network Topology
+                    </h3>
+<div class="h-48 w-full border border-outline-variant relative overflow-hidden bg-surface-dim">
+
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="text-mono-data text-[10px] bg-surface/80 p-2 border border-outline">REAL_TIME_NODE_CONNECTIVITY_ACTIVE</div>
+</div>
+</div>
+</div>
+<div class="bg-surface border border-outline p-6 space-y-4">
+<h3 class="font-mono-label text-mono-label text-primary uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="terminal">terminal</span> Operator Logs
+                    </h3>
+<div class="bg-on-surface p-4 h-48 overflow-y-auto font-mono-data text-[11px] text-secondary-fixed">
+<div class="opacity-50"># [SESSION_INIT] 2024-11-20 09:12:44</div>
+<div>&gt; AUTHENTICATING OPERATOR_082... OK</div>
+<div>&gt; FETCHING ESCROW_DATA... 12 RECORDS FOUND</div>
+<div>&gt; PENDING DISPUTE DETECTED: #D-4402-RF</div>
+<div class="text-primary-fixed">&gt; CRITICAL: DEADLINE APPROACHING FOR #C-8291-TX</div>
+<div>&gt; PING: LONDON_NODE (24ms) | SINGAPORE_NODE (102ms)</div>
+<div class="animate-pulse">&gt; _</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-4 px-margin-desktop flex justify-between items-center bg-surface-dim border-t border-outline">
+<div class="flex items-center gap-4">
+<span class="font-mono-label text-mono-label text-primary">PROVIDER COURT</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant opacity-60">©2024 PROVIDER COURT // PROTOCOL_V1.0.4</span>
+</div>
+<div class="flex gap-6 font-mono-data text-mono-data text-on-surface-variant">
+<a class="hover:text-primary transition-colors uppercase" href="#">[Legal]</a>
+<a class="hover:text-primary transition-colors uppercase flex items-center gap-1" href="#">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> [Status: OK]
+                </a>
+<a class="hover:text-primary transition-colors uppercase" href="#">[API_Docs]</a>
+<a class="text-secondary hover:text-primary transition-colors uppercase" href="#">[Network_Latency: 24ms]</a>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interaction for hover states on summary cards
+        document.querySelectorAll('.bg-surface.border-outline').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.style.borderColor = '#a93100';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.borderColor = '#916f65';
+            });
+        });
+
+        // Simple terminal typing effect simulation
+        const terminal = document.querySelector('.bg-on-surface');
+        if (terminal) {
+            setInterval(() => {
+                const logs = [
+                    "> SCANNING FOR NEW OPPORTUNITIES...",
+                    "> UPDATE: NODE_AFX-02 IS STABLE",
+                    "> BROADCASTING REPUTATION_VOUCHER...",
+                    "> SYNCING LEDGER #8292..."
+                ];
+                const newLine = document.createElement('div');
+                newLine.className = 'opacity-80';
+                newLine.textContent = logs[Math.floor(Math.random() * logs.length)];
+                terminal.appendChild(newLine);
+                if (terminal.childNodes.length > 20) terminal.removeChild(terminal.firstChild);
+                terminal.scrollTop = terminal.scrollHeight;
+            }, 5000);
+        }
+    </script>
+</body></html>

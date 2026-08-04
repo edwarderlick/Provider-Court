@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT | Browse Jobs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#376c58",
+                        "tertiary-fixed": "#d4e3ff",
+                        "outline": "#916f65",
+                        "surface-tint": "#ad3300",
+                        "on-tertiary-fixed-variant": "#004884",
+                        "on-surface": "#281712",
+                        "tertiary-fixed-dim": "#a4c9ff",
+                        "secondary-fixed": "#b6efd5",
+                        "surface-container-low": "#fff1ed",
+                        "on-primary-container": "#fffbff",
+                        "on-secondary-fixed": "#002116",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#005da8",
+                        "surface-dim": "#f2d3ca",
+                        "surface-container": "#ffe9e3",
+                        "secondary": "#326854",
+                        "surface-variant": "#fbdcd3",
+                        "surface-bright": "#fff8f6",
+                        "secondary-fixed-dim": "#9ad2b9",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#3f2c26",
+                        "surface": "#fff8f6",
+                        "tertiary-container": "#0076d3",
+                        "primary": "#a93100",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#fdfcff",
+                        "surface-container-high": "#ffe2da",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001c39",
+                        "on-primary-fixed": "#3a0b00",
+                        "inverse-primary": "#ffb59e",
+                        "on-background": "#281712",
+                        "on-secondary-fixed-variant": "#17503d",
+                        "outline-variant": "#e6beb2",
+                        "surface-container-highest": "#fbdcd3",
+                        "secondary-container": "#b3ecd2",
+                        "on-primary-fixed-variant": "#842500",
+                        "primary-container": "#d34000",
+                        "primary-fixed": "#ffdbd0",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#5c4037",
+                        "primary-fixed-dim": "#ffb59e",
+                        "background": "#fff8f6",
+                        "inverse-on-surface": "#ffede8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "margin-desktop": "40px",
+                        "technical-gap": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "mono-label": ["JetBrains Mono"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "mono-data": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "mono-label": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "mono-data": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #E6E2D3;
+            color: #281712;
+            cursor: crosshair;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .machine-border {
+            border: 1px solid #1A1A1A;
+        }
+        .active-filter {
+            background-color: #a93100;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-surface w-full top-0 sticky z-50 border-b border-outline dark:border-outline-variant flex justify-between items-center px-margin-desktop py-technical-gap max-w-full">
+<div class="flex items-center gap-6">
+<span class="font-headline-md text-headline-md font-black tracking-tighter text-primary dark:text-primary-fixed">PROVIDER COURT</span>
+<nav class="hidden md:flex gap-gutter">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-mono-label text-mono-label" href="#">Browse Jobs</a>
+<a class="text-on-surface-variant font-mono-label text-mono-label hover:text-primary transition-colors" href="#">Providers</a>
+<a class="text-on-surface-variant font-mono-label text-mono-label hover:text-primary transition-colors" href="#">Activity</a>
+</nav>
+</div>
+<div class="flex items-center gap-technical-gap">
+<div class="machine-border px-4 py-1.5 flex items-center gap-2 bg-surface-container-highest">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-mono-data text-mono-data">0x71C...492E</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-1.5 font-mono-label text-mono-label hover:scale-95 transition-all duration-75 active:scale-90">
+                Connect Wallet
+            </button>
+<div class="flex gap-2 ml-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">settings</span>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar / Filter Sidebar -->
+<aside class="h-[calc(100vh-64px)] w-64 sticky left-0 border-r border-outline dark:border-outline-variant bg-surface-container-low dark:bg-surface-container-highest flex flex-col py-6">
+<div class="px-6 mb-8">
+<h3 class="font-mono-label text-mono-label text-primary uppercase mb-2">[01] STATUS: OPERATIONAL</h3>
+<p class="font-mono-data text-mono-data opacity-60">Network: Mainnet-Alpha</p>
+<div class="mt-4 p-2 machine-border text-center bg-primary-container/10 font-mono-label text-mono-label">
+                    Role: Buyer
+                </div>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="px-4 mb-4">
+<span class="font-mono-label text-[10px] text-outline uppercase tracking-widest">Job Modality</span>
+</div>
+<a class="flex items-center gap-3 px-6 py-3 bg-primary text-on-primary font-bold border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined" data-icon="article">article</span>
+<span class="font-mono-label">All Jobs</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="text_fields">text_fields</span>
+<span class="font-mono-label">[TEXT]</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+<span class="font-mono-label">[IMAGE]</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="graphic_eq">graphic_eq</span>
+<span class="font-mono-label">[AUDIO]</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline/20 p-6 space-y-4">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-mono-label text-mono-label">Documentation</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help_center">help_center</span>
+<span class="font-mono-label text-mono-label">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto px-margin-desktop py-12">
+<!-- Header Section -->
+<div class="mb-12 border-b border-black pb-8 flex justify-between items-end">
+<div>
+<h1 class="font-display-lg text-display-lg uppercase leading-none mb-2">Explore<br/>Open Jobs</h1>
+<p class="font-mono-label text-mono-label text-on-surface-variant max-w-xl">
+                        [LISTING] Active escrow-protected tasks available for fulfillment. Verified providers only. 
+                        Network latency: 24ms. Block: 18,294,001.
+                    </p>
+</div>
+<div class="text-right">
+<span class="font-headline-lg text-headline-lg font-black opacity-10">[01]</span>
+</div>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+<!-- Job Card 1 -->
+<div class="machine-border bg-surface flex flex-col hover:bg-surface-bright transition-colors group">
+<div class="p-technical-gap bg-surface-container border-b border-black flex justify-between items-center">
+<span class="font-mono-label text-mono-label font-bold text-primary">[01] TEXT</span>
+<span class="font-mono-data text-mono-data text-outline">ID: PC-982</span>
+</div>
+<div class="p-6 flex-1">
+<p class="font-body-md text-body-md mb-6 line-clamp-3">
+                            Generate a 2,000-word comprehensive technical audit for a decentralized autonomous organization (DAO) treasury management protocol...
+                        </p>
+<div class="grid grid-cols-3 gap-2 border-t border-black/10 pt-4">
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Clauses</span>
+<span class="font-mono-label text-mono-label">4</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Reward</span>
+<span class="font-mono-label text-mono-label">500 GEN</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">TTL</span>
+<span class="font-mono-label text-mono-label">14m</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-black">
+<button class="w-full bg-primary text-on-primary py-3 font-mono-label text-mono-label hover:invert transition-all flex justify-center items-center gap-2 group-active:scale-95">
+                            Accept Job <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="machine-border bg-surface flex flex-col hover:bg-surface-bright transition-colors group">
+<div class="p-technical-gap bg-surface-container border-b border-black flex justify-between items-center">
+<span class="font-mono-label text-mono-label font-bold text-secondary">[02] IMAGE</span>
+<span class="font-mono-data text-mono-data text-outline">ID: PC-441</span>
+</div>
+<div class="relative h-40 w-full overflow-hidden border-b border-black">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A high-contrast architectural rendering of a brutalist data center made of raw concrete and orange steel beams. The scene is shot from a low angle with dramatic morning sunlight casting long geometric shadows. The aesthetic is industrial and professional, using a limited palette of warm greys and safety orange accents in a clean light-mode environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1n4YFbnaDvhgvTd_zqybRo6xRd9efXOE1_V-EM_U71_WLm9q7-Q_Ok79cUix1TYCzxs_juCA04cfzf0JSVpt_Bb__XUZTyWC_DiO5yoRI5fO4lO3ECrpbhGZobLX9Wq7wp8ANDZGTkw91S8VPQR2jhpKcEZdypuuKVjQPiTEVWJRgBXOKxAAvzQy5xoCqCFp40B_1rPSYEACh6K0Hn9zJroTRjpuHhDLpfKrBirv3vmUwzXsVdEKMlGun9PSLZ4byNvdS2sqWdqvB"/>
+</div>
+<div class="p-6 flex-1">
+<p class="font-body-md text-body-md mb-6 line-clamp-3">
+                            Refine architectural visualization for a modular server facility. Require high-fidelity raytraced outputs with material accuracy...
+                        </p>
+<div class="grid grid-cols-3 gap-2 border-t border-black/10 pt-4">
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Clauses</span>
+<span class="font-mono-label text-mono-label">12</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Reward</span>
+<span class="font-mono-label text-mono-label">1,200 GEN</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">TTL</span>
+<span class="font-mono-label text-mono-label">3h</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-black">
+<button class="w-full bg-primary text-on-primary py-3 font-mono-label text-mono-label hover:invert transition-all flex justify-center items-center gap-2 group-active:scale-95">
+                            Accept Job <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="machine-border bg-surface flex flex-col hover:bg-surface-bright transition-colors group">
+<div class="p-technical-gap bg-surface-container border-b border-black flex justify-between items-center">
+<span class="font-mono-label text-mono-label font-bold text-tertiary">[03] AUDIO</span>
+<span class="font-mono-data text-mono-data text-outline">ID: PC-112</span>
+</div>
+<div class="p-6 flex-1">
+<p class="font-body-md text-body-md mb-6 line-clamp-3">
+                            Synthesize rhythmic dub patterns and sequence 12 sample pads for a professional riddim system. 44.1kHz / 24-bit PCM required...
+                        </p>
+<div class="grid grid-cols-3 gap-2 border-t border-black/10 pt-4">
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Clauses</span>
+<span class="font-mono-label text-mono-label">8</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Reward</span>
+<span class="font-mono-label text-mono-label">750 GEN</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">TTL</span>
+<span class="font-mono-label text-mono-label">1h 12m</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-black">
+<button class="w-full bg-primary text-on-primary py-3 font-mono-label text-mono-label hover:invert transition-all flex justify-center items-center gap-2 group-active:scale-95">
+                            Accept Job <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Job Card 4 -->
+<div class="machine-border bg-surface flex flex-col hover:bg-surface-bright transition-colors group">
+<div class="p-technical-gap bg-surface-container border-b border-black flex justify-between items-center">
+<span class="font-mono-label text-mono-label font-bold text-primary">[04] TEXT</span>
+<span class="font-mono-data text-mono-data text-outline">ID: PC-772</span>
+</div>
+<div class="p-6 flex-1">
+<p class="font-body-md text-body-md mb-6 line-clamp-3">
+                            Legal review of smart contract arbitration clauses. Ensure compliance with maritime escrow standards and multi-sig resolution...
+                        </p>
+<div class="grid grid-cols-3 gap-2 border-t border-black/10 pt-4">
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Clauses</span>
+<span class="font-mono-label text-mono-label">2</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Reward</span>
+<span class="font-mono-label text-mono-label">400 GEN</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">TTL</span>
+<span class="font-mono-label text-mono-label">45m</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-black">
+<button class="w-full bg-primary text-on-primary py-3 font-mono-label text-mono-label hover:invert transition-all flex justify-center items-center gap-2 group-active:scale-95">
+                            Accept Job <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Job Card 5 -->
+<div class="machine-border bg-surface flex flex-col hover:bg-surface-bright transition-colors group">
+<div class="p-technical-gap bg-surface-container border-b border-black flex justify-between items-center">
+<span class="font-mono-label text-mono-label font-bold text-secondary">[05] IMAGE</span>
+<span class="font-mono-data text-mono-data text-outline">ID: PC-003</span>
+</div>
+<div class="p-6 flex-1">
+<p class="font-body-md text-body-md mb-6 line-clamp-3">
+                            Generative art series based on network traffic patterns. Visualization must incorporate real-time throughput data streams...
+                        </p>
+<div class="grid grid-cols-3 gap-2 border-t border-black/10 pt-4">
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Clauses</span>
+<span class="font-mono-label text-mono-label">24</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">Reward</span>
+<span class="font-mono-label text-mono-label">3,500 GEN</span>
+</div>
+<div class="text-center">
+<span class="block font-mono-data text-mono-data uppercase text-outline">TTL</span>
+<span class="font-mono-label text-mono-label">24h</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-black">
+<button class="w-full bg-primary text-on-primary py-3 font-mono-label text-mono-label hover:invert transition-all flex justify-center items-center gap-2 group-active:scale-95">
+                            Accept Job <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Job Card 6 (Bento Style Offset) -->
+<div class="machine-border bg-on-surface text-surface flex flex-col hover:bg-black transition-colors group">
+<div class="p-technical-gap bg-surface-container-low text-on-surface border-b border-black flex justify-between items-center">
+<span class="font-mono-label text-mono-label font-bold">[06] URGENT</span>
+<span class="font-mono-data text-mono-data">PRIORITY: HIGH</span>
+</div>
+<div class="p-6 flex-1">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="font-mono-data text-mono-data uppercase text-primary font-bold">Live Network Event</span>
+</div>
+<p class="font-body-md text-body-md mb-6">
+                            Emergency node mitigation assistance required. Must have experience with Layer 2 settlement latency issues during peak congestion...
+                        </p>
+</div>
+<div class="p-4 border-t border-white/20">
+<button class="w-full bg-surface text-on-surface py-3 font-mono-label text-mono-label hover:bg-primary hover:text-white transition-all flex justify-center items-center gap-2 group-active:scale-95">
+                            Priority Accept <span class="material-symbols-outlined text-sm">bolt</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pagination/Footer Stats -->
+<div class="mt-12 flex justify-between items-center border-t border-black pt-8">
+<div class="flex gap-4">
+<button class="machine-border px-4 py-2 hover:bg-primary-container transition-all font-mono-label text-mono-label">PREV</button>
+<button class="machine-border px-4 py-2 hover:bg-primary-container transition-all font-mono-label text-mono-label">NEXT</button>
+</div>
+<div class="text-right">
+<span class="font-mono-data text-mono-data uppercase">Page 01 of 14</span>
+<span class="block font-mono-data text-mono-data opacity-40">Displaying 1-12 of 158 available contracts</span>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-dim w-full border-t border-outline dark:border-outline-variant mt-auto grid grid-cols-12 gap-gutter px-margin-desktop py-12">
+<div class="col-span-12 md:col-span-4">
+<span class="font-headline-lg text-headline-lg font-black text-on-surface opacity-10 block mb-4 uppercase">RIDDIM</span>
+<p class="font-mono-data text-mono-data text-on-surface-variant max-w-xs">
+                © 2024 PROVIDER COURT ESCROW PROTOCOL [REV 1.0.4]<br/>
+                SECURED BY SYNTHETIC PROOF-OF-STAKE.
+            </p>
+</div>
+<div class="col-span-12 md:col-span-8 flex flex-wrap gap-8 md:justify-end items-start">
+<nav class="flex flex-col gap-2">
+<a class="font-mono-data text-mono-data uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-mono-data text-mono-data uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</nav>
+<nav class="flex flex-col gap-2">
+<a class="font-mono-data text-mono-data uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">API Specs</a>
+<a class="font-mono-data text-mono-data uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">Uptime Status</a>
+</nav>
+<div class="text-right ml-12">
+<p class="font-mono-data text-mono-data uppercase text-on-surface-variant mb-2">Technical Support</p>
+<div class="machine-border px-4 py-2 bg-surface hover:bg-primary-container transition-all flex items-center gap-4 cursor-pointer">
+<span class="font-mono-label text-mono-label">Open Ticket</span>
+<span class="material-symbols-outlined text-sm">mail</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-95');
+                setTimeout(() => this.classList.remove('scale-95'), 100);
+            });
+        });
+
+        // Atmospheric effect: random blinking LED indicator
+        const indicators = document.querySelectorAll('.rounded-full.bg-primary');
+        setInterval(() => {
+            indicators.forEach(ind => {
+                ind.style.opacity = Math.random() > 0.5 ? '1' : '0.5';
+            });
+        }, 1500);
+    </script>
+</body></html>

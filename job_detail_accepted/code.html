@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for industrial look */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #f2d3ca; }
+        ::-webkit-scrollbar-thumb { background: #a93100; }
+        
+        .grid-bg {
+            background-image: radial-gradient(#916f65 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+        
+        .glow-led {
+            box-shadow: 0 0 8px #a93100;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(169, 49, 0, 0.1);
+            position: absolute;
+            top: 0;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a4c9ff",
+                        "outline": "#916f65",
+                        "on-surface": "#281712",
+                        "surface-container-high": "#ffe2da",
+                        "secondary-container": "#b3ecd2",
+                        "primary-container": "#d34000",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#17503d",
+                        "on-surface-variant": "#5c4037",
+                        "on-primary-container": "#fffbff",
+                        "secondary-fixed": "#b6efd5",
+                        "on-secondary-container": "#376c58",
+                        "tertiary-fixed": "#d4e3ff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#e6beb2",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#ad3300",
+                        "inverse-primary": "#ffb59e",
+                        "tertiary": "#005da8",
+                        "on-secondary-fixed": "#002116",
+                        "primary-fixed": "#ffdbd0",
+                        "on-primary-fixed": "#3a0b00",
+                        "surface-bright": "#fff8f6",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#9ad2b9",
+                        "on-primary-fixed-variant": "#842500",
+                        "surface-container-low": "#fff1ed",
+                        "surface": "#fff8f6",
+                        "tertiary-container": "#0076d3",
+                        "on-tertiary-fixed-variant": "#004884",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#f2d3ca",
+                        "surface-container": "#ffe9e3",
+                        "primary-fixed-dim": "#ffb59e",
+                        "secondary": "#326854",
+                        "on-tertiary-fixed": "#001c39",
+                        "inverse-on-surface": "#ffede8",
+                        "surface-container-highest": "#fbdcd3",
+                        "surface-variant": "#fbdcd3",
+                        "on-background": "#281712",
+                        "primary": "#a93100",
+                        "inverse-surface": "#3f2c26",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-primary": "#ffffff",
+                        "background": "#fff8f6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "unit": "4px",
+                        "technical-gap": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "mono-label": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "mono-data": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "mono-label": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-outline">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-[24px] tracking-tighter text-primary">PROVIDER COURT</h1>
+<nav class="hidden md:flex gap-6">
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1" href="#">[01] BROWSE JOBS</a>
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1" href="#">[02] PROVIDERS</a>
+<a class="font-mono-label text-mono-label text-primary dark:text-primary-fixed border-b-2 border-primary font-bold px-2 py-1 active:opacity-80 transition-opacity" href="#">[03] ACTIVITY</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high px-3 py-1 transition-colors">GOVERNANCE</button>
+<button class="bg-primary text-on-primary font-mono-label text-mono-label px-4 py-2 hover:opacity-90 active:translate-y-0.5 transition-all">CONNECT WALLET</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col z-40 bg-surface-container-low border-r border-outline">
+<div class="p-6 border-b border-outline">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 bg-outline-variant border border-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">hardware</span>
+</div>
+<div>
+<p class="font-mono-label text-mono-label font-bold text-primary">OPERATOR_082</p>
+<p class="font-mono-data text-[10px] text-secondary">STATUS: VERIFIED</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 py-4 overflow-y-auto">
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span> [DASHBOARD]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">add_box</span> [POST JOB]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label bg-primary text-on-primary border-l-4 border-on-primary transition-transform duration-150 translate-x-1" href="#">
+<span class="material-symbols-outlined">package_2</span> [DELIVERIES]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">query_stats</span> [ANALYTICS]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform duration-150 active:translate-x-1" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span> [ESCROW]
+            </a>
+</nav>
+<div class="p-4 border-t border-outline flex flex-col gap-2">
+<button class="w-full border border-primary text-primary font-mono-label text-mono-label py-2 hover:bg-primary-fixed transition-colors">NEW DISPUTE</button>
+<div class="mt-4">
+<a class="flex items-center gap-3 px-2 py-2 font-mono-label text-mono-label text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span> SETTINGS
+                </a>
+<a class="flex items-center gap-3 px-2 py-2 font-mono-label text-mono-label text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span> LOGOUT
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-margin-desktop grid-bg min-h-screen">
+<!-- Header Status Bar -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4 border-b border-outline pb-6">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 bg-primary rounded-full glow-led animate-pulse"></span>
+<span class="font-mono-label text-mono-label text-primary font-bold">STATUS: ACTIVE_ESCROW</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase tracking-tight">Job_ID: #AX-772_AUDIO_PROC</h2>
+</div>
+<div class="flex flex-col items-end border-l-4 border-primary pl-4">
+<span class="font-mono-label text-mono-label text-on-surface-variant mb-1">WAITING FOR PROVIDER_UPLOAD</span>
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined">hourglass_empty</span>
+<span class="font-mono-data text-xl">BUYER_WAIT_STATE: ENABLED</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Job Technical Specifications -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-technical-gap">
+<!-- Main Specs Card -->
+<div class="bg-surface border border-outline p-6 relative overflow-hidden">
+<div class="scanline"></div>
+<div class="flex justify-between items-start border-b border-outline pb-4 mb-6">
+<h3 class="font-mono-label text-mono-label font-bold text-primary">[01] PARAMETERS</h3>
+<span class="font-mono-data text-mono-data text-on-surface-variant">MODALITY_LOCK: AUDIO/WAV</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<label class="block font-mono-label text-mono-label text-on-surface-variant mb-2">CORE_PROMPT</label>
+<div class="p-4 bg-surface-container border border-outline-variant font-mono-data text-sm leading-relaxed">
+                                EXECUTE: High-fidelity spectral isolation for multi-track audio input. Filter harmonic interference above 18kHz. Output format: PCM 24-bit.
+                                <br/><br/>
+                                SOURCE_REF: 0x882...F9A
+                            </div>
+</div>
+<div class="flex flex-col gap-4">
+<div>
+<label class="block font-mono-label text-mono-label text-on-surface-variant mb-1">ASSIGNED_PROVIDER</label>
+<div class="flex items-center gap-2 p-3 bg-surface-container-high border border-primary border-dashed">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span class="font-mono-label font-bold text-on-surface">EP-SAMPLER_01</span>
+</div>
+</div>
+<div>
+<label class="block font-mono-label text-mono-label text-on-surface-variant mb-1">CONTRACT_CLAUSES</label>
+<ul class="font-mono-data text-xs flex flex-col gap-1">
+<li class="flex items-start gap-2"><span class="text-primary">▶</span> [C01] MIN_CONFIDENCE_RATING: 0.982</li>
+<li class="flex items-start gap-2"><span class="text-primary">▶</span> [C02] LATE_PENALTY: 0.05 ETH / HR</li>
+<li class="flex items-start gap-2"><span class="text-primary">▶</span> [C03] DATA_PRIVACY: LAYER_2_ENCRYPT</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Visualization Section -->
+<div class="bg-surface border border-outline h-48 relative overflow-hidden">
+<div class="absolute top-2 left-4 z-10">
+<span class="font-mono-label text-[10px] text-on-surface-variant bg-surface px-1">[STREAM_MONITOR]</span>
+</div>
+
+<div class="absolute bottom-4 left-4 right-4 flex justify-between font-mono-data text-[10px] text-primary">
+<span>FREQ: 44.1KHZ</span>
+<span>LATENCY: 12ms</span>
+<span>BITRATE: 1411kbps</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Deadline and Actions -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-technical-gap">
+<!-- Countdown Component -->
+<div class="bg-surface-container-high border border-outline p-6 text-center">
+<h3 class="font-mono-label text-mono-label text-on-surface-variant mb-6">[02] DELIVER_BY_DEADLINE</h3>
+<div class="grid grid-cols-3 gap-2 mb-6" id="countdown">
+<div class="flex flex-col">
+<span class="text-[42px] font-mono-data font-bold leading-none text-primary" id="cd-h">14</span>
+<span class="font-mono-label text-[10px] text-on-surface-variant">HOURS</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[42px] font-mono-data font-bold leading-none text-primary" id="cd-m">28</span>
+<span class="font-mono-label text-[10px] text-on-surface-variant">MINUTES</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[42px] font-mono-data font-bold leading-none text-primary" id="cd-s">44</span>
+<span class="font-mono-label text-[10px] text-on-surface-variant">SECONDS</span>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-4 flex flex-col gap-1">
+<div class="flex justify-between font-mono-data text-[10px]">
+<span>TIMESTAMP_LOCK:</span>
+<span>2024-11-24 18:00:00 UTC</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 mt-2">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+</div>
+<!-- Contextual Actions -->
+<div class="bg-surface border border-outline p-6">
+<h3 class="font-mono-label text-mono-label text-on-surface-variant mb-4">[03] ESCROW_LOCK_DETAILS</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center p-3 bg-surface-container border border-outline-variant">
+<div class="flex flex-col">
+<span class="font-mono-data text-[10px] text-on-surface-variant">TOTAL_VALUATION</span>
+<span class="font-bold text-xl">1.422 ETH</span>
+</div>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex flex-col gap-2">
+<button class="w-full py-4 bg-surface-dim border border-outline text-on-surface-variant font-mono-label flex items-center justify-center gap-2 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined">lock</span> RELEASE_FUNDS
+                            </button>
+<p class="font-mono-data text-[10px] text-center text-on-surface-variant">ACTION_LOCKED UNTIL PROVIDER_DELIVERY</p>
+</div>
+</div>
+</div>
+<!-- Provider Profile Preview -->
+<div class="bg-surface border border-outline overflow-hidden">
+<div class="bg-surface-container h-32 relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale brightness-75" data-alt="A portrait of a futuristic hardware operator in a dimly lit server room, high contrast lighting with orange neon reflections on technical gear, industrial synth aesthetic, professional and focused atmosphere, hyper-detailed photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc6JE-yieMHf7BvLPyiOR89d4hnifSMrPRh7iBlb6X7c99qmOKA7LnJrR1TCx9-LvVannhpWJRcFoM_u0ct9bQlPGbzusXhIYZjE8djrcbDiqLY_cyDKYW4vg77d4b5cSIYi-XHO2N1E-oUm2E8ts1xngs9JL0Itcq6srhkMyXUxOhoKM94v--YBWR9hHdz0RJ_Vi3gKBziEGRSDhcdWTANdHJndOUWun6MQ9p1g5JjZvy177h0Q8UxyE46B6xDa-VXroIHV86Duzi"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-mono-label font-bold">PROVIDER: EP-SAMPLER_01</h4>
+<span class="text-secondary font-mono-data text-xs">TRUST: 99.8%</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-surface-container-low border border-outline-variant p-2 text-center">
+<p class="font-mono-data text-[10px] text-on-surface-variant">COMPLETED</p>
+<p class="font-bold">1,204</p>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-2 text-center">
+<p class="font-mono-data text-[10px] text-on-surface-variant">UPTIME</p>
+<p class="font-bold">99.9%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- System Logs (Industrial Detail) -->
+<div class="mt-8 bg-surface border border-outline p-4 font-mono-data text-[11px] text-on-surface-variant">
+<div class="flex justify-between border-b border-outline pb-2 mb-2">
+<span>[SYSTEM_LOG_FEED]</span>
+<span>V1.0.4 // SESSION_ID: 0x921A...4E1</span>
+</div>
+<div class="h-24 overflow-y-auto space-y-1">
+<p><span class="text-primary">[2024-11-23 09:12:02]</span> CONTRACT_SIGNED_BY_PROVIDER: 0x33A...22E</p>
+<p><span class="text-primary">[2024-11-23 09:12:15]</span> ESCROW_DEPOSIT_CONFIRMED: 1.422 ETH LOCKED</p>
+<p><span class="text-primary">[2024-11-23 10:04:44]</span> PROVIDER_ENVIRONMENT_READY: AUDIO_PROC_V3</p>
+<p><span class="text-on-surface-variant opacity-50">[2024-11-24 02:00:11]</span> SYSTEM_HEARTBEAT_OK</p>
+<p><span class="text-on-surface-variant opacity-50">[2024-11-24 03:00:11]</span> SYSTEM_HEARTBEAT_OK</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-4 px-margin-desktop flex flex-col md:flex-row justify-between items-center bg-surface-dim border-t border-outline relative z-50">
+<div class="font-mono-label text-mono-label text-primary mb-2 md:mb-0">
+            ©2024 PROVIDER COURT // PROTOCOL_V1.0.4
+        </div>
+<div class="flex flex-wrap gap-4 font-mono-data text-mono-data text-on-surface-variant">
+<a class="hover:text-primary transition-colors text-secondary" href="#">[LEGAL]</a>
+<a class="hover:text-primary transition-colors" href="#">[STATUS: OK]</a>
+<a class="hover:text-primary transition-colors" href="#">[API_DOCS]</a>
+<a class="hover:text-primary transition-colors" href="#">[NETWORK_LATENCY: 24MS]</a>
+</div>
+</footer>
+<script>
+        // Simple countdown logic for the industrial timer
+        function updateCountdown() {
+            let h = parseInt(document.getElementById('cd-h').innerText);
+            let m = parseInt(document.getElementById('cd-m').innerText);
+            let s = parseInt(document.getElementById('cd-s').innerText);
+
+            if (s > 0) {
+                s--;
+            } else {
+                s = 59;
+                if (m > 0) {
+                    m--;
+                } else {
+                    m = 59;
+                    if (h > 0) {
+                        h--;
+                    }
+                }
+            }
+
+            document.getElementById('cd-h').innerText = h.toString().padStart(2, '0');
+            document.getElementById('cd-m').innerText = m.toString().padStart(2, '0');
+            document.getElementById('cd-s').innerText = s.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+
+        // Add some random log noise for flavor
+        const logContainer = document.querySelector('.h-24.overflow-y-auto');
+        setInterval(() => {
+            const now = new Date();
+            const timeStr = `[${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2,'0')}-${now.getDate().toString().padStart(2,'0')} ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}]`;
+            const log = document.createElement('p');
+            log.className = 'text-on-surface-variant opacity-50';
+            log.innerHTML = `<span class="text-on-surface-variant">${timeStr}</span> PING_NODE_RESPONSE: 200 OK`;
+            logContainer.appendChild(log);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            if (logContainer.children.length > 20) logContainer.removeChild(logContainer.firstChild);
+        }, 8000);
+    </script>
+</body></html>

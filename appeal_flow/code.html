@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PROVIDER COURT // APPEAL_FLOW</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .technical-grid {
+            background-size: 40px 40px;
+            background-image: radial-gradient(circle, #916f65 1px, transparent 1px);
+            opacity: 0.05;
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(169, 49, 0, 0.1);
+            position: absolute;
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan {
+            from { top: 0; }
+            to { top: 100%; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#a4c9ff",
+                        "outline": "#916f65",
+                        "on-surface": "#281712",
+                        "surface-container-high": "#ffe2da",
+                        "secondary-container": "#b3ecd2",
+                        "primary-container": "#d34000",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#17503d",
+                        "on-surface-variant": "#5c4037",
+                        "on-primary-container": "#fffbff",
+                        "secondary-fixed": "#b6efd5",
+                        "on-secondary-container": "#376c58",
+                        "tertiary-fixed": "#d4e3ff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#e6beb2",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#ad3300",
+                        "inverse-primary": "#ffb59e",
+                        "tertiary": "#005da8",
+                        "on-secondary-fixed": "#002116",
+                        "primary-fixed": "#ffdbd0",
+                        "on-primary-fixed": "#3a0b00",
+                        "surface-bright": "#fff8f6",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#9ad2b9",
+                        "on-primary-fixed-variant": "#842500",
+                        "surface-container-low": "#fff1ed",
+                        "surface": "#fff8f6",
+                        "tertiary-container": "#0076d3",
+                        "on-tertiary-fixed-variant": "#004884",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#f2d3ca",
+                        "surface-container": "#ffe9e3",
+                        "primary-fixed-dim": "#ffb59e",
+                        "secondary": "#326854",
+                        "on-tertiary-fixed": "#001c39",
+                        "inverse-on-surface": "#ffede8",
+                        "surface-container-highest": "#fbdcd3",
+                        "surface-variant": "#fbdcd3",
+                        "on-background": "#281712",
+                        "primary": "#a93100",
+                        "inverse-surface": "#3f2c26",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-primary": "#ffffff",
+                        "background": "#fff8f6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "unit": "4px",
+                        "technical-gap": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "mono-label": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "mono-data": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "mono-label": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-outline">
+<div class="flex items-center gap-technical-gap">
+<span class="font-headline-md text-headline-md tracking-tighter text-primary">PROVIDER COURT</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-3 py-1" href="#">[01] BROWSE JOBS</a>
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-3 py-1" href="#">[02] PROVIDERS</a>
+<a class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors px-3 py-1" href="#">[03] ACTIVITY</a>
+</nav>
+<div class="flex items-center gap-gutter">
+<button class="font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high px-4 py-2 border border-outline">GOVERNANCE</button>
+<button class="font-mono-label text-mono-label text-on-primary bg-primary px-4 py-2 active:opacity-80 transition-opacity">CONNECT WALLET</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col z-40 bg-surface-container-low border-r border-outline hidden lg:flex">
+<div class="p-6 border-b border-outline">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 bg-surface-container-highest border border-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">hardware</span>
+</div>
+<div>
+<div class="font-mono-label text-mono-label font-bold text-on-surface">OPERATOR_082</div>
+<div class="text-[10px] font-mono-data text-secondary uppercase tracking-widest">STATUS: VERIFIED</div>
+</div>
+</div>
+</div>
+<nav class="flex-grow py-4">
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span> [DASHBOARD]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">add_box</span> [POST JOB]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">package_2</span> [DELIVERIES]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-highest transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">query_stats</span> [ANALYTICS]
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-mono-label text-mono-label bg-primary text-on-primary border-l-4 border-on-primary" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span> [ESCROW]
+            </a>
+</nav>
+<div class="p-6 border-t border-outline">
+<button class="w-full py-3 bg-primary text-on-primary font-mono-label text-mono-label transition-opacity hover:opacity-90">NEW DISPUTE</button>
+<div class="mt-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 font-mono-label text-mono-label text-on-surface-variant hover:text-primary" href="#"><span class="material-symbols-outlined text-sm">settings</span> SETTINGS</a>
+<a class="flex items-center gap-3 font-mono-label text-mono-label text-on-surface-variant hover:text-primary" href="#"><span class="material-symbols-outlined text-sm">logout</span> LOGOUT</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pt-24 pb-20 pl-margin-mobile lg:pl-[280px] pr-margin-mobile lg:pr-margin-desktop min-h-screen relative overflow-hidden">
+<div class="technical-grid absolute inset-0 z-0 pointer-events-none"></div>
+<div class="scanline z-10 pointer-events-none"></div>
+<div class="relative z-20 max-w-5xl mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+<div>
+<div class="font-mono-label text-mono-label text-primary mb-2">[APPEAL-01] // INITIATE_DISPUTE_ESCALATION</div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Appeal Protocol</h1>
+</div>
+<div class="flex items-center gap-4 bg-surface-container px-4 py-2 border border-outline">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-mono-data text-mono-data uppercase">Network Status: Online</span>
+</div>
+<div class="h-4 w-px bg-outline"></div>
+<span class="font-mono-data text-mono-data uppercase">Latency: 24ms</span>
+</div>
+</div>
+<!-- Appeal Form Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Selection & Reasoning -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<!-- Disputed Clauses -->
+<section class="bg-surface border border-outline p-6">
+<div class="flex items-center gap-2 mb-4 border-b border-outline pb-2">
+<span class="material-symbols-outlined text-primary">gavel</span>
+<h2 class="font-mono-label text-mono-label font-bold uppercase">Disputed Clause(s)</h2>
+</div>
+<div class="space-y-3">
+<label class="flex items-start gap-4 p-4 bg-surface-container-low border border-outline cursor-pointer hover:bg-surface-container-high transition-colors">
+<input class="mt-1 w-4 h-4 text-primary border-outline focus:ring-primary" type="checkbox"/>
+<div>
+<span class="font-mono-label text-mono-label block text-on-surface mb-1">[CLAUSE_ID: 04-A] Technical Specification Conformity</span>
+<p class="font-body-md text-sm text-on-surface-variant">Provider claims delivered assets meet GPU-compute benchmarks. User disputes floating-point accuracy during stress test phase.</p>
+</div>
+</label>
+<label class="flex items-start gap-4 p-4 bg-surface-container-low border border-outline cursor-pointer hover:bg-surface-container-high transition-colors">
+<input checked="" class="mt-1 w-4 h-4 text-primary border-outline focus:ring-primary" type="checkbox"/>
+<div>
+<span class="font-mono-label text-mono-label block text-on-surface mb-1">[CLAUSE_ID: 12-C] Latency Threshold Compliance</span>
+<p class="font-body-md text-sm text-on-surface-variant">SLA mandates &lt;50ms response. Logs indicate periodic spikes exceeding 200ms during peak load balancing.</p>
+</div>
+</label>
+</div>
+</section>
+<!-- Reasoning Input -->
+<section class="bg-surface border border-outline p-6 flex-grow">
+<div class="flex items-center gap-2 mb-4 border-b border-outline pb-2">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+<h2 class="font-mono-label text-mono-label font-bold uppercase">Reasoning &amp; Technical Evidence</h2>
+</div>
+<div class="relative group">
+<textarea class="w-full bg-surface-container-lowest border border-outline p-4 font-mono-data text-mono-data focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-none" placeholder="Enter detailed technical justification for the appeal. Include timestamp logs, hash references, and specific SLA violations..." rows="10"></textarea>
+<div class="absolute bottom-2 right-2 font-mono-data text-[10px] text-on-surface-variant opacity-50">CHAR_COUNT: 0 / 4096</div>
+</div>
+<div class="mt-4 flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-sm">attach_file</span> ATTACH_LOG_FILE
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-sm">link</span> LINK_REPOSITORY
+                            </button>
+</div>
+</section>
+</div>
+<!-- Right Column: Bond & Actions -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Bond Required Card -->
+<section class="bg-surface-container border-2 border-primary p-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-mono-label text-mono-label font-bold uppercase text-primary">Bond Required</h2>
+<span class="material-symbols-outlined text-primary">security</span>
+</div>
+<div class="bg-white/50 border border-outline-variant p-4 mb-4">
+<div class="text-xs font-mono-data text-on-surface-variant mb-1">STAKING_CURRENCY:</div>
+<div class="text-3xl font-headline-md text-on-surface">5,400 <span class="text-lg font-mono-label">GEN</span></div>
+</div>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-error text-sm">report_problem</span>
+<div class="text-[11px] font-mono-data leading-tight text-on-surface-variant">
+                                Bond is held in escrow. If appeal is rejected, 100% of the bond is burned. If successful, bond + penalty is returned.
+                            </div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between font-mono-data text-xs py-1 border-b border-outline-variant">
+<span>CURRENT BALANCE:</span>
+<span>12,840 GEN</span>
+</div>
+<div class="flex justify-between font-mono-data text-xs py-1 border-b border-outline-variant">
+<span>NETWORK FEE:</span>
+<span>12.40 GEN</span>
+</div>
+<div class="flex justify-between font-mono-data text-xs font-bold pt-2 text-primary">
+<span>TOTAL COMMITMENT:</span>
+<span>5,412.40 GEN</span>
+</div>
+</div>
+</section>
+<!-- Information Card -->
+<section class="bg-surface border border-outline overflow-hidden">
+<div class="h-32 relative bg-surface-dim">
+<div class="w-full h-full bg-cover bg-center opacity-40" data-alt="A macro close-up of high-performance server hardware components with orange glowing indicator lights and intricate circuit patterns. The style is sharp, clinical, and industrial, reflecting a high-stakes technical environment with a warm orange and cool grey color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfEdRVQaormxR8saFYF82faKxSW315oa9xk0xn4-QAXo91wl60ZouxslF3N4fJgEdK1Wp1wPf8y6YY9H4He0QYqclS-_X-0AMqbyuCNn3PDk21q4Y5X8ZwGo_DCcm8UATKhe0KhhpQX1cSMM4WPh8xDgCktqTfkZIGgUex5JCSuD0K1s23zMlIrGai9ZNEnY78gwonDOClVII2fTyvh3r3epCbQRr4lyjE79QPGO-m-Spb1c848gF6d_Y6icAI655P7bZrzd_S2OU1')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-4 left-6">
+<span class="font-mono-label text-mono-label bg-on-surface text-surface px-2 py-1">TECH_NOTICE</span>
+</div>
+</div>
+<div class="p-6">
+<p class="font-body-md text-sm text-on-surface-variant mb-4">
+                                Appealing a verdict initiates a secondary audit by a randomized tier-2 validator cluster. This process takes 12-36 hours.
+                            </p>
+<a class="text-primary font-mono-label text-xs underline underline-offset-4 hover:opacity-80" href="#">READ COURT_PROTOCOL_V4.2</a>
+</div>
+</section>
+<!-- Final Action -->
+<button class="group w-full py-6 bg-primary text-on-primary font-headline-md text-xl flex flex-col items-center justify-center gap-2 transition-all active:scale-[0.98] border-b-4 border-primary-container">
+<span class="font-bold tracking-widest">SUBMIT APPEAL</span>
+<span class="font-mono-label text-xs opacity-70 group-hover:opacity-100 transition-opacity">EXECUTE_SMART_CONTRACT_TRANSACTION</span>
+</button>
+<button class="w-full py-3 border border-outline font-mono-label text-mono-label text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                        SAVE_DRAFT_AND_EXIT
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-4 px-margin-desktop flex flex-col md:flex-row justify-between items-center bg-surface-dim border-t border-outline fixed bottom-0 z-50">
+<div class="font-mono-label text-mono-label text-primary">©2024 PROVIDER COURT // PROTOCOL_V1.0.4</div>
+<div class="flex gap-6 mt-4 md:mt-0">
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[LEGAL]</a>
+<a class="font-mono-data text-mono-data text-secondary hover:text-primary transition-colors" href="#">[STATUS: OK]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[API_DOCS]</a>
+<a class="font-mono-data text-mono-data text-on-surface-variant hover:text-primary transition-colors" href="#">[NETWORK_LATENCY: 24MS]</a>
+</div>
+</footer>
+<script>
+        // Micro-interaction for the character counter
+        const textarea = document.querySelector('textarea');
+        const counter = document.querySelector('.font-mono-data.text-\\[10px\\]');
+        
+        textarea.addEventListener('input', () => {
+            const count = textarea.value.length;
+            counter.textContent = `CHAR_COUNT: ${count} / 4096`;
+            if (count > 4000) {
+                counter.classList.add('text-error');
+            } else {
+                counter.classList.remove('text-error');
+            }
+        });
+
+        // Simulating some technical flickering on the "Bond Required" card
+        setInterval(() => {
+            const bondCard = document.querySelector('.border-2.border-primary');
+            if (Math.random() > 0.98) {
+                bondCard.style.opacity = '0.7';
+                setTimeout(() => bondCard.style.opacity = '1', 50);
+            }
+        }, 100);
+    </script>
+</body></html>
