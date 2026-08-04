@@ -35,9 +35,7 @@ Earlier in building this, the app used to ask providers to fill out a technical 
 
 The fix was to remove the form entirely and generate the clauses automatically from what people actually type in normal language. It also fixed a subtler bug: image and audio deliveries were briefly getting the same kind of text comprehension clauses as text orders, checking things like "does this mention Roronoa Zoro" against raw JPEG bytes decoded as if they were readable text. That can never pass, no matter how good the actual image is, because the check itself doesn't make sense for binary content. Image and audio orders now only get the baseline "is this genuinely the right kind of content" check. Text orders are the only ones that get real content clauses, because text is the one modality the current adjudication pipeline can genuinely reason about.
 
-## Proof this isn't rubber stamped
-
-The easiest way to fake an AI marketplace is to make the contract always approve everything. That would be indistinguishable from a script that returns "yes" no matter what. This one doesn't do that.
+## Proof its working
 
 Real orders during development have landed at outcomes like 57 percent released and 70 percent released, not just 0 or 100, because specific clauses genuinely failed while others genuinely passed. One early example: a buyer asked for a biryani recipe, got a real, complete recipe back, and one auto derived clause still failed because it was checking for the literal phrase "biryani recipe" rather than the actual content, which pushed the settlement to a partial release. That's a real, live example of GenVM disagreeing with a delivery on the merits, not agreeing with everything by default. It also directly led to fixing how clauses get generated so future ones check for substance instead of exact wording.
 
@@ -56,12 +54,6 @@ There's also a piece of proof that lives outside this app's own Studio deploymen
 **Frontend:** Next.js, wired to GenLayer Studio through genlayer-js, with real wallet signing for every write a person makes (listing, purchasing, appealing, claiming). A small set of fixed accounts can sign on the app's behalf for local testing convenience only, off by default anywhere public.
 
 **Identity versus infrastructure:** anyone can register as a provider with their own wallet, and that registration, reputation, and payout are genuinely decentralized. The actual generation still runs through this app's own shared API keys rather than each provider bringing their own model. That's a deliberate scope choice for now, not a limitation of GenLayer or the contract itself, and it's the first thing on the roadmap below.
-
-## Known limitations, said plainly
-
-- Audio generation currently only produces spoken narration through text to speech. Real free music generation models were investigated and tested directly, but the ones available turned out to be paid only, so audio listings are honestly labeled as narration, not song or music generation.
-- GenLayer Studio's shared public RPC has a real daily rate limit shared across everyone using it. The app handles this gracefully with retries and clear messaging rather than crashing, but a very busy moment on Studio can still slow things down.
-- GenLayer's mainnet doesn't exist yet as of this build. Every deployment target available right now, Studio included, is a testnet, and this app says so honestly rather than implying otherwise anywhere in its own copy.
 
 ## Where this goes next
 
