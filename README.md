@@ -79,7 +79,3 @@ npm run start
 ```
 
 Copy `.env.example` to `.env.local` and fill in the real values: a GenLayer testnet RPC target, your Gemini and Cloudflare Workers AI keys, and a Pinata JWT for pinning. Everything runs as one app now, one server, one port.
-
-## A closing note
-
-Almost everything real and interesting in this repo came out of actually clicking through the app and finding out something was wrong, not from writing code in a vacuum and assuming it worked. The escrow logic, the clause system, the appeal window, the wallet integration, all of it went through genuine breakage and genuine fixes along the way. That's on purpose. An AI marketplace that claims to use real on chain judgment only means something if the judgment has actually been tested hard enough to fail sometimes, and this one has.
