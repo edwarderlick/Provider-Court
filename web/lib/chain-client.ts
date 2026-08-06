@@ -385,14 +385,15 @@ export async function createJob(
     value: 0n,
   });
   onProgress?.("finalizing-create");
-  await waitFinalizedInBrowser(client, createHash);
-
-  const count = Number(
-    await withBusyRetry(() =>
-      client.readContract({ address: CONTRACT_ADDRESS, functionName: "get_job_count", args: [] })
-    )
-  );
-  const jobId = count - 1;
+  // Reads create_job's own real return value (this transaction's exact
+  // job_id) rather than a follow-up get_job_count() read, which can race a
+  // concurrent create_job from anyone else and silently hand back the
+  // wrong id (see waitFinalizedInBrowser's own doc comment).
+  const { returnValue: createReturnValue } = await waitFinalizedInBrowser(client, createHash);
+  if (createReturnValue === undefined) {
+    throw new Error("create_job finalized but returned no job_id -- cannot correlate");
+  }
+  const jobId = Number(createReturnValue);
 
   onProgress?.("awaiting-fund-signature");
   const fundHash = await client.writeContract({
@@ -711,14 +712,15 @@ export async function createListing(
     value: 0n,
   });
   onProgress?.("finalizing-listing");
-  await waitFinalizedInBrowser(client, hash);
-
-  const count = Number(
-    await withBusyRetry(() =>
-      client.readContract({ address: CONTRACT_ADDRESS, functionName: "get_listing_count", args: [] })
-    )
-  );
-  return { listingId: count - 1 };
+  // Reads create_listing's own real return value (this transaction's exact
+  // listing_id) rather than a follow-up get_listing_count() read, which
+  // can race a concurrent create_listing from anyone else and silently
+  // hand back the wrong id (see waitFinalizedInBrowser's own doc comment).
+  const { returnValue } = await waitFinalizedInBrowser(client, hash);
+  if (returnValue === undefined) {
+    throw new Error("create_listing finalized but returned no listing_id -- cannot correlate");
+  }
+  return { listingId: Number(returnValue) };
 }
 
 export async function deactivateListing(wallet: WalletState, listingId: string): Promise<{ listing: Listing }> {
@@ -815,14 +817,15 @@ export async function purchaseListing(
     value: priceAtto,
   });
   onProgress?.("finalizing-purchase");
-  await waitFinalizedInBrowser(client, hash);
-
-  const count = Number(
-    await withBusyRetry(() =>
-      client.readContract({ address: CONTRACT_ADDRESS, functionName: "get_job_count", args: [] })
-    )
-  );
-  const orderId = count - 1;
+  // Reads purchase's own real return value (this transaction's exact
+  // order_id) rather than a follow-up get_job_count() read, which can race
+  // a concurrent purchase from anyone else and silently hand back someone
+  // else's order id (see waitFinalizedInBrowser's own doc comment).
+  const { returnValue } = await waitFinalizedInBrowser(client, hash);
+  if (returnValue === undefined) {
+    throw new Error("purchase finalized but returned no order_id -- cannot correlate");
+  }
+  const orderId = Number(returnValue);
 
   onProgress?.("auto-generating", orderId);
   try {

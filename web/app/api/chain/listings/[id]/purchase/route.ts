@@ -61,12 +61,15 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       args: [listingId, buyerInput, buyerClauses],
       value: priceAtto,
     });
-    await waitFinalized(client, purchaseHash as `0x${string}`);
-
-    const orderCount = Number(
-      await client.readContract({ address: CONTRACT_ADDRESS, functionName: "get_job_count", args: [] })
-    );
-    const orderId = orderCount - 1;
+    // Reads purchase's own real return value (this transaction's exact
+    // order_id) rather than a follow-up get_job_count() read, which can
+    // race a concurrent purchase from anyone else and silently hand back
+    // someone else's order id (see waitFinalized's own doc comment).
+    const { returnValue } = await waitFinalized(client, purchaseHash as `0x${string}`);
+    if (returnValue === undefined) {
+      throw new Error("purchase finalized but returned no order_id -- cannot correlate");
+    }
+    const orderId = Number(returnValue);
 
     // Payment already finalized on-chain by this point -- a failure from
     // here on is a genuine post-payment fulfillment failure, not a purchase

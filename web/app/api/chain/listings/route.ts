@@ -58,12 +58,16 @@ export async function POST(req: NextRequest) {
       ],
       value: 0n,
     });
-    await waitFinalized(client, hash as `0x${string}`);
-
-    const count = Number(
-      await client.readContract({ address: CONTRACT_ADDRESS, functionName: "get_listing_count", args: [] })
-    );
-    const listingId = count - 1;
+    // Reads create_listing's own real return value (the exact listing_id
+    // this transaction created) rather than a follow-up get_listing_count()
+    // read -- the count-based approach can race a concurrent create_listing
+    // from anyone else and silently hand back the wrong id (see
+    // waitFinalized's own doc comment).
+    const { returnValue } = await waitFinalized(client, hash as `0x${string}`);
+    if (returnValue === undefined) {
+      throw new Error("create_listing finalized but returned no listing_id -- cannot correlate");
+    }
+    const listingId = Number(returnValue);
     const listing = await readListing(listingId);
     return NextResponse.json({ listingId, listing, txHash: hash, provider: providerAddress() });
   } catch (err) {

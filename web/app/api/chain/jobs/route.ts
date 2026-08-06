@@ -54,12 +54,15 @@ export async function POST(req: NextRequest) {
       ],
       value: 0n,
     });
-    await waitFinalized(client, createHash as `0x${string}`);
-
-    const count = Number(
-      await client.readContract({ address: CONTRACT_ADDRESS, functionName: "get_job_count", args: [] })
-    );
-    const jobId = count - 1;
+    // Reads create_job's own real return value (this transaction's exact
+    // job_id) rather than a follow-up get_job_count() read, which can race
+    // a concurrent create_job from anyone else (see waitFinalized's own
+    // doc comment).
+    const { returnValue } = await waitFinalized(client, createHash as `0x${string}`);
+    if (returnValue === undefined) {
+      throw new Error("create_job finalized but returned no job_id -- cannot correlate");
+    }
+    const jobId = Number(returnValue);
 
     const fundHash = await client.writeContract({
       address: CONTRACT_ADDRESS,

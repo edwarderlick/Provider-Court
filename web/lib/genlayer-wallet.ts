@@ -156,5 +156,11 @@ export async function waitFinalizedInBrowser(client: ReturnType<typeof createCli
     const message = leaderReceipt?.result?.payload ?? "transaction reverted";
     throw new Error(typeof message === "string" ? message : JSON.stringify(message));
   }
-  return receipt;
+  // See genlayer-server.ts's waitFinalized for why this matters: the
+  // leader's own return value (e.g. create_listing/purchase's new
+  // listing_id/order_id) is tied to this exact transaction, unlike a
+  // follow-up get_*_count() read which can race a concurrent creation.
+  const returnValue: string | undefined =
+    leaderReceipt?.result?.status === "return" ? leaderReceipt.result.payload?.readable : undefined;
+  return { receipt, returnValue };
 }

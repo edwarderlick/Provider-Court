@@ -126,7 +126,19 @@ export async function waitFinalized(client: ReturnType<typeof createClient>, has
     const message = leaderReceipt?.result?.payload ?? "transaction reverted";
     throw new Error(typeof message === "string" ? message : JSON.stringify(message));
   }
-  return receipt;
+  // The leader's own return value for the exact call this transaction
+  // executed -- e.g. create_listing/purchase return their new
+  // listing_id/order_id directly (confirmed live: a real create_listing
+  // receipt's leader_receipt[0].result was
+  // {"status":"return","payload":{"readable":"15"}}, an exact match for
+  // that listing's real on-chain id). Reading THIS instead of a follow-up
+  // get_*_count() read is what correlates an id to the specific
+  // transaction that created it -- a separate count-based read after the
+  // fact can race a concurrent creation and silently hand the caller
+  // someone else's id instead of its own.
+  const returnValue: string | undefined =
+    leaderReceipt?.result?.status === "return" ? leaderReceipt.result.payload?.readable : undefined;
+  return { receipt, returnValue };
 }
 
 // [EXPECTED]-prefixed messages are deterministic contract-level rejections
