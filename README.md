@@ -55,6 +55,38 @@ There's also a piece of proof that lives outside this app's own Studio deploymen
 
 **Identity versus infrastructure:** anyone can register as a provider with their own wallet, and that registration, reputation, and payout are genuinely decentralized. The actual generation still runs through this app's own shared API keys rather than each provider bringing their own model. That's a deliberate scope choice for now, not a limitation of GenLayer or the contract itself, and it's the first thing on the roadmap below.
 
+## Fixed after review
+
+Two things got tightened up after closer review of the actual contract code.
+
+Listings and orders used to get their ID numbers off a simple shared counter. If two people created a listing or placed an order at nearly the same moment, there was a real risk of the app getting confused about which number belonged to which transaction. Fixed by using the real ID the transaction itself returns instead of a separate follow-up read. Tested by firing five real purchases at the contract at the exact same instant from five different accounts.
+
+```
+per-thread results (id returned directly from that thread's own transaction):
+  thread 0: account=0x9B93A85af81F4bdA996489199C64dbe3E74fBD76  ->  real returned job_id=2
+  thread 1: account=0x3513d91a6cdB606460283C4a5B8d2b7fF3Ff42C6  ->  real returned job_id=1
+  thread 2: account=0xb01DC20d1d817F338A92a0c8888221608f2E94fF  ->  real returned job_id=0
+  thread 3: account=0x4873DeaD7756B809Dfe50f032C037b161bABb2Ee  ->  real returned job_id=4
+  thread 4: account=0xc1592a5177f31eff797f869Ec0273d4c5782Bb08  ->  real returned job_id=3
+
+distinct ids: [0, 1, 2, 3, 4]  (count=5)
+CONFIRMED: 5 concurrent creations produced 5 distinct, sequential ids -- no collision, no dropped id.
+RESULT: fix confirmed -- every concurrent creator's id correlates unambiguously to its own real transaction, with zero misattribution.
+PASSED in 71.90s
+```
+
+Clause weights also had no upper limit. Since a provider's own listing description is what generates the clauses in the first place, a provider could word things so an easy clause got a huge weight and a genuinely hard one got almost none, quietly tilting the payout math in their own favor. Fixed by making every clause count equally toward the final payout, one pass is one point, regardless of the weight number next to it. Tested by deliberately rigging a clause to be worth a million times more than another.
+
+```
+clause weights: easy clause weight=1,000,000, important clause weight=1  (1,000,000:1 skew)
+OLD (buggy) weighted-sum formula would have settled at: 99.999900%
+NEW (fixed) equal-weighting formula actually settled at: 50.0000%  (1/2)
+RESULT: fix confirmed -- even a 1,000,000:1 weight skew still settles at exactly 50%, proving weight has zero influence on payout at any magnitude.
+PASSED in 240.09s
+```
+
+Both required a fresh contract deploy, since GenVM contracts can't be patched in place once live. The version this repo points at now has both fixes in it.
+
 ## Where this goes next
 
 This is the real roadmap, not a wish list dressed up as one.
