@@ -19,7 +19,8 @@ export default function LandingPage() {
       {/* Desktop header */}
       <header className="hidden md:flex bg-surface w-full top-0 sticky z-50 border-b border-outline justify-between items-center px-margin-desktop py-technical-gap">
         <div className="flex items-center gap-8">
-          <span className="font-headline-md text-headline-md font-black tracking-tighter text-primary uppercase">
+          <span className="flex items-center gap-2 font-headline-md text-headline-md font-black tracking-tighter text-primary uppercase">
+            <img src="/logo.png" alt="" className="w-8 h-8" />
             PROVIDER COURT
           </span>
           <nav className="hidden md:flex gap-6">
@@ -54,7 +55,8 @@ export default function LandingPage() {
 
       {/* Mobile header */}
       <header className="md:hidden fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface border-b border-outline">
-        <div className="font-headline-md text-[24px] tracking-tighter text-primary uppercase font-bold">
+        <div className="flex items-center gap-2 font-headline-md text-[24px] tracking-tighter text-primary uppercase font-bold">
+          <img src="/logo.png" alt="" className="w-7 h-7" />
           PROVIDER COURT
         </div>
         <button

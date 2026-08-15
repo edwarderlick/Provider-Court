@@ -1,3 +1,5 @@
+<img src="web/public/logo.png" width="96" height="96" alt="Provider Court logo" />
+
 # Provider Court
 
 An AI work marketplace where the judgment is real. Providers list a service, buyers pay for it, an AI generates the work, and GenLayer's own validators independently check whether it actually delivered on what was promised. Built on GenLayer Studio.

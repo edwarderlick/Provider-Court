@@ -64,8 +64,9 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="flex items-center gap-technical-gap md:gap-8">
           <Link
             href="/"
-            className="font-headline-md text-[20px] md:text-headline-md tracking-tighter text-primary font-black"
+            className="flex items-center gap-2 font-headline-md text-[20px] md:text-headline-md tracking-tighter text-primary font-black"
           >
+            <img src="/logo.png" alt="" className="w-6 h-6 md:w-7 md:h-7" />
             PROVIDER COURT
           </Link>
           <nav className="hidden md:flex gap-6">
