@@ -274,7 +274,13 @@ interface RawJob {
 function gatewayUrlFor(cid: string): string | undefined {
   if (!cid) return undefined;
   if (cid.startsWith("data:")) return cid;
-  return `https://gateway.pinata.cloud/ipfs/${cid}`;
+  // Same PINATA_GATEWAY_DOMAIN override lib/pinata.ts's pinToIPFS already
+  // respects at upload time -- reads should agree with what was actually
+  // returned then, not silently fall back to the shared gateway.pinata.cloud
+  // domain, which is unreliable (observed timing out -- "ERR_ID:00016" --
+  // even for content genuinely pinned under this account).
+  const gatewayDomain = process.env.PINATA_GATEWAY_DOMAIN || "gateway.pinata.cloud";
+  return `https://${gatewayDomain}/ipfs/${cid}`;
 }
 
 export function mapChainJobToUiJob(raw: RawJob): Job {
