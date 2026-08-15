@@ -2,7 +2,17 @@
 
 An AI work marketplace where the judgment is real. Providers list a service, buyers pay for it, an AI generates the work, and GenLayer's own validators independently check whether it actually delivered on what was promised. Built on GenLayer Studio.
 
+**Live:** [provider-court.vercel.app](https://provider-court.vercel.app/)
+
 <img width="1919" height="868" alt="image" src="https://github.com/user-attachments/assets/d5202213-d248-4771-92db-5fbbdfbdacef" />
+
+## What it is, in one line
+
+An escrow marketplace where a GenLayer Intelligent Contract, not a backend, decides whether an AI provider's delivery actually satisfies what was promised — and pays out partially when it only partly does.
+
+## Who it's for
+
+Anyone who wants to try buying or selling small AI-generated work (text, image, or audio) backed by real on-chain judgment instead of a "trust the seller" marketplace — and any GenLayer builder curious what a genuinely non-trivial Intelligent Contract (multi-state escrow, real LLM-based adjudication, appeals) looks like end to end.
 
 ## Contract
 
@@ -12,7 +22,13 @@ An AI work marketplace where the judgment is real. Providers list a service, buy
 
 ## Try it
 
-You'll need a browser wallet (e.g. MetaMask) connected to GenLayer Studio, and a few free API keys for the generation pipeline (Gemini, Cloudflare Workers AI, Pinata — all have no-card free tiers, links below).
+**Easiest: use the live site.** Open **[provider-court.vercel.app](https://provider-court.vercel.app/)**, connect a browser wallet (e.g. MetaMask) to GenLayer Studio (`studionet`) — the app will prompt you — and get free test GEN from Studio's own faucet if your wallet is empty. Then:
+
+1. Go to **List a Service**, describe something in plain language (e.g. "I'll write you a short poem about anything"), set a price, and submit — watch it auto-derive real clauses before you confirm.
+2. Go to **Browse Listings**, buy your own listing (or someone else's), and watch the order page: generation → IPFS pinning → on-chain delivery → GenVM validator consensus all happen automatically, ending in a real per-clause pass/fail breakdown.
+3. If you disagree with the verdict, **Appeal** — that locks a bond and triggers a second, independent round of consensus on the same evidence.
+
+**Or run it yourself from source**, if you'd rather not depend on the hosted deployment:
 
 1. **Clone and install**
    ```
@@ -30,11 +46,7 @@ You'll need a browser wallet (e.g. MetaMask) connected to GenLayer Studio, and a
    npm run build
    npm run start
    ```
-4. **Open [http://localhost:3000](http://localhost:3000)** and connect your wallet to GenLayer Studio (the app will prompt you; get free test GEN from Studio's own faucet if your wallet is empty).
-5. **Try the golden path:**
-   - Go to **List a Service**, describe something in plain language (e.g. "I'll write you a short poem about anything"), set a price, and submit — watch it auto-derive real clauses before you confirm.
-   - Go to **Browse Listings**, buy your own listing (or someone else's), and watch the order page: generation → IPFS pinning → on-chain delivery → GenVM validator consensus all happen automatically, ending in a real per-clause pass/fail breakdown.
-   - If you disagree with the verdict, **Appeal** — that locks a bond and triggers a second, independent round of consensus on the same evidence.
+4. **Open [http://localhost:3000](http://localhost:3000)** and follow the same 3 steps above.
 
 ## The problem this is actually solving
 
@@ -127,7 +139,7 @@ This is the real roadmap, not a wish list dressed up as one.
 
 **Optional manual clauses for power users.** Auto generated clauses are the right default for almost everyone, but a provider who genuinely wants precise control over exactly what gets checked should be able to opt into writing their own clauses by hand, on top of the automatic baseline.
 
-**A real public deployment.** The app has already been fully verified end to end, including a real merge into a single deployable project, and is ready to go live on a public URL. That step is coming immediately after this submission.
+**A real public deployment.** Done — the app is live at [provider-court.vercel.app](https://provider-court.vercel.app/), fully verified end to end, including a real merge into a single deployable project.
 
 **Real music generation for audio listings**, once a genuinely free option exists, or as a paid opt in path clearly separated from the free tier the rest of the app depends on.
 
@@ -135,4 +147,4 @@ This is the real roadmap, not a wish list dressed up as one.
 
 ## How it's run
 
-Everything runs as one Next.js app — one server, one port. See "Try it" above for the exact setup and run steps.
+Everything runs as one Next.js app — one server, one port, deployed on Vercel. See "Try it" above for the live link and the exact setup/run steps if you'd rather run it from source.
