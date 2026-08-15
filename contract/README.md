@@ -13,7 +13,38 @@ This project includes the boilerplate code for a GenLayer use case implementatio
 The actual contract for this project is `contracts/provider_court_escrow.py` (the football
 bets example above is unused boilerplate left over from the project scaffold).
 
-### GenLayer Studio (live, current — IMAGE/AUDIO clause fix + delivered-content display)
+### GenLayer Studio (live, current — reviewer-requested fixes: id correlation + equal-weighting payout)
+- **Address:** `0x8F92A82CE0E0474379A4aE0D0d696cD88884Db48`
+- **Network:** `studionet` (chain id 61999, `https://studio.genlayer.com/api`, gasless)
+- Two fixes requested by a real GenLayer reviewer before this project's acceptance, both
+  confirmed root-caused before fixing rather than assumed. Adjudication's core logic, appeal
+  flow, clause derivation content, and wallet-connect signing are all untouched.
+- **Issue 1 (id correlation) — no contract change needed:** `create_listing`/`purchase`/
+  `create_job` already returned their real new id as the transaction's own return value; the
+  race was entirely client-side (`web/lib/chain-client.ts`, `web/lib/genlayer-server.ts`, and
+  their API routes were all re-reading `get_*_count()` *after* finalizing and assuming
+  `count - 1` was their own id -- which a genuinely concurrent creator could invalidate). Fixed
+  by reading each transaction's own return value directly (`waitFinalized`/
+  `waitFinalizedInBrowser` now return `{ receipt, returnValue }`). Verified with a real
+  `ThreadPoolExecutor`-driven concurrent-creation test (`test/integration/test_concurrent_creation.py`,
+  5 real simultaneous `create_job` calls, 5 distinct correctly-correlated ids every run).
+- **Issue 2 (weight fairness) — genuine contract change:** `_validate_clause_shape` only ever
+  required a clause's `weight` to be a positive integer, with no upper bound, and the old
+  `_settle()` formula (`passed_weight / total_weight`, summing each clause's stored weight) let
+  a single inflated-weight clause dominate the payout almost entirely regardless of whether the
+  clause that actually mattered passed. Fixed by switching `_settle()` to equal weighting --
+  every clause counts as exactly one vote (`total_weight = len(clauses)`,
+  `passed_weight = count of passed verdicts`) regardless of its stored `weight` field. The
+  `weight` field itself is unchanged (still validated, still stored, still shown in the UI); it
+  simply no longer affects payout. Verified with two real adjudicated orders exercising the
+  exact gaming pattern this closes (`test/integration/test_adversarial_weight.py`): a 1000:1
+  weight skew and a 1,000,000:1 weight skew both now settle at exactly 50% (1 of 2 real clauses
+  passed) instead of the ~99.9% the old weighted-sum formula would have produced.
+- Deployed fresh (GenVM contracts aren't upgradable in place) with the same constructor args as
+  the prior deployment: `ipfs_gateway="https://ipfs.io/ipfs/"`,
+  `fulfillment_operator=0xEB8a674D22eA0596203B906E472D0f62F42acc06`.
+
+### GenLayer Studio (superseded — IMAGE/AUDIO clause fix + delivered-content display)
 - **Address:** `0x2B29BaA63b1Bff0de560dc61c71feEAb7EF67586`
 - **Network:** `studionet` (chain id 61999, `https://studio.genlayer.com/api`, gasless)
 - Fixes two real bugs found in production use, both scoped to clause derivation and content

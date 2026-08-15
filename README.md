@@ -4,6 +4,38 @@ An AI work marketplace where the judgment is real. Providers list a service, buy
 
 <img width="1919" height="868" alt="image" src="https://github.com/user-attachments/assets/d5202213-d248-4771-92db-5fbbdfbdacef" />
 
+## Contract
+
+- **Address:** `0x8F92A82CE0E0474379A4aE0D0d696cD88884Db48`
+- **Network:** GenLayer Studio, `studionet` (gasless test network)
+- Full deployment history, including exactly what changed and how each version was verified: [`contract/README.md`](contract/README.md)
+
+## Try it
+
+You'll need a browser wallet (e.g. MetaMask) connected to GenLayer Studio, and a few free API keys for the generation pipeline (Gemini, Cloudflare Workers AI, Pinata — all have no-card free tiers, links below).
+
+1. **Clone and install**
+   ```
+   git clone https://github.com/edwarderlick/Provider-Court
+   cd Provider-Court/web
+   npm install
+   ```
+2. **Set up your environment.** Copy `web/.env.example` to `web/.env.local`, then fill in:
+   - `GEMINI_API_KEY` — free key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+   - `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_API_TOKEN` — free Workers AI tier at [dash.cloudflare.com](https://dash.cloudflare.com/profile/api-tokens) (10,000 Neurons/day, no card)
+   - `PINATA_JWT` — free tier at [app.pinata.cloud](https://app.pinata.cloud/developers/api-keys) (1GB storage, no card)
+   - The contract address fields are already filled in correctly — leave them as-is.
+3. **Build and run** (always use build+start, not `npm run dev` — Turbopack's dev mode is unstable on some machines for this project):
+   ```
+   npm run build
+   npm run start
+   ```
+4. **Open [http://localhost:3000](http://localhost:3000)** and connect your wallet to GenLayer Studio (the app will prompt you; get free test GEN from Studio's own faucet if your wallet is empty).
+5. **Try the golden path:**
+   - Go to **List a Service**, describe something in plain language (e.g. "I'll write you a short poem about anything"), set a price, and submit — watch it auto-derive real clauses before you confirm.
+   - Go to **Browse Listings**, buy your own listing (or someone else's), and watch the order page: generation → IPFS pinning → on-chain delivery → GenVM validator consensus all happen automatically, ending in a real per-clause pass/fail breakdown.
+   - If you disagree with the verdict, **Appeal** — that locks a bond and triggers a second, independent round of consensus on the same evidence.
+
 ## The problem this is actually solving
 
 Most "AI marketplace" ideas built on a blockchain fall into the same trap: the smart contract just stores a result that an off chain backend already decided. The chain becomes a receipt printer, not a judge. That's not really using the chain for anything except a database with extra steps.
@@ -69,13 +101,6 @@ This is the real roadmap, not a wish list dressed up as one.
 
 **Mainnet, once GenLayer's mainnet actually exists.** Everything here is built against the same GenVM primitives mainnet will use. Moving is a redeploy, not a rebuild.
 
-## Running it locally
+## How it's run
 
-```
-cd web
-npm install
-npm run build
-npm run start
-```
-
-Copy `.env.example` to `.env.local` and fill in the real values: a GenLayer testnet RPC target, your Gemini and Cloudflare Workers AI keys, and a Pinata JWT for pinning. Everything runs as one app now, one server, one port.
+Everything runs as one Next.js app — one server, one port. See "Try it" above for the exact setup and run steps.
